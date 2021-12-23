@@ -1,0 +1,27 @@
+@import './fonts.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  background-color: $white-smoke;
+}
+
+.c-auth-wrapper {
+  margin-top: -40px;
+}
+
+.social {
+  &__btn {
+    padding: 5px;
+  }
+  &__logo {
+    margin-right: 10px;
+  }
+}
+
+.c-err-msg {
+  margin-bottom: 1rem;
+  padding: 5px 10px;
+}
