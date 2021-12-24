@@ -34,6 +34,14 @@ const routes = [
       hideNavbar: true,
     },
   },
+  {
+    path: '/reset',
+    name: 'Reset',
+    component: () => import(/* webpackChunkName: "reset" */ '@/views/reset.vue'),
+    meta: {
+      hideNavbar: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
