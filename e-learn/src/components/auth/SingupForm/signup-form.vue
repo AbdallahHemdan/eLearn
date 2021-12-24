@@ -36,10 +36,6 @@
       <label for="password" class="auth__input-label">Password</label>
     </div>
 
-    <div class="alert alert-danger err-msg" role="alert" v-show="errorMessage">
-      {{ this.errorMessage }}
-    </div>
-
     <!-- Full name fields -->
     <div class="row">
       <div class="col">
@@ -87,11 +83,8 @@
       <option value="instructor">Instructor</option>
     </select>
 
-    <div class="d-flex justify-content-between align-items-center">
-      <div class="form-check col-md">
-        <input class="form-check-input" type="checkbox" />
-        <label class="auth__input-label"> I agree on all terms, conditions </label>
-      </div>
+    <div class="alert alert-danger err-msg" role="alert" v-show="errorMessage">
+      {{ this.errorMessage }}
     </div>
 
     <!-- Signup Btn -->
@@ -148,15 +141,20 @@ export default {
         firstName: this.firstName,
         lastName: this.lastName,
 
-        date: this.date,
-        userType: this.userType,
+        birthDate: this.date,
+        type: this.userType,
       };
     },
   },
   methods: {
     signup() {
       axios
-        .post(`${base}/signup`, this.payload)
+        .post(`${base}/signup`, this.payload, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+          },
+        })
         .then(response => {
           console.log(response);
 
