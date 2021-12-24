@@ -30,7 +30,23 @@ const routes = [
     path: '/settings',
     name: 'Settings',
     component: () => import('@/views/Settings.vue')
-  }
+  },
+  {
+    path: '/forgot',
+    name: 'Forgot',
+    component: () => import(/* webpackChunkName: "forgot" */ '@/views/forgot.vue'),
+    meta: {
+      hideNavbar: true,
+    },
+  },
+  {
+    path: '/reset',
+    name: 'Reset',
+    component: () => import(/* webpackChunkName: "reset" */ '@/views/reset.vue'),
+    meta: {
+      hideNavbar: true,
+    },
+  },
 ];
 
 const router = new VueRouter({

@@ -1,0 +1,36 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding-top: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  &__wrapper {
+    width: 100%;
+    max-width: 28rem;
+    min-height: 576px;
+  }
+
+  &__submit-btn {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 6px;
+    width: 100%;
+    background-color: $main-color;
+    color: $white;
+
+    &:hover {
+      background-color: $sub-color;
+    }
+  }
+
+  &__input-label {
+    color: #777;
+  }
+
+  &__user-type {
+    padding: 1rem 0.75rem;
+  }
+}

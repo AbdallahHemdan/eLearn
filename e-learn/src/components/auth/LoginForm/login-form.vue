@@ -1,5 +1,5 @@
 <template>
-  <form class="form-container">
+  <form class="login">
     <!-- Username Field -->
     <div class="form-floating mb-3">
       <input
@@ -9,7 +9,7 @@
         placeholder="Username"
         v-model="username"
       />
-      <label for="username" class="input-label">Username</label>
+      <label for="username" class="auth__input-label">Username</label>
     </div>
 
     <!-- Password Field -->
@@ -21,7 +21,7 @@
         placeholder="Password"
         v-model="password"
       />
-      <label for="password" class="input-label">Password</label>
+      <label for="password" class="auth__input-label">Password</label>
     </div>
 
     <div class="alert alert-danger err-msg" role="alert" v-show="errorMessage">
@@ -42,16 +42,16 @@
       </div>
 
       <div class="forgot-password col-md">
-        <a href="/forgot-password" class="forgot-text"> Forget your password ? </a>
+        <a href="/forgot" class="forgot-text"> Forget your password ? </a>
       </div>
     </div>
 
     <!-- Login Btn -->
     <button
       type="submit"
-      class="btn btn-block login-btn"
+      class="auth__submit-btn btn btn-block"
       :disabled="!username || !password"
-      @click.prevent="login"
+      @click.prevent="submit"
     >
       Log In
     </button>
@@ -81,7 +81,7 @@ export default {
     },
   },
   methods: {
-    login() {
+    submit() {
       axios
         .post(`${base}/login`, this.payload)
         .then(response => {
@@ -101,31 +101,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-main {
-  width: 100%;
-  min-height: 500px;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.input-label {
-  color: #777;
-}
-
-.login-btn {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 6px;
-  width: 100%;
-  background-color: $main-color;
-  color: $white;
-
-  &:hover {
-    background-color: $sub-color;
-  }
-}
-
 .forgot-password {
   text-align: end;
 }

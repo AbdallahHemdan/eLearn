@@ -2,23 +2,23 @@
   <div class="container auth">
     <div class="auth__wrapper">
       <form-header
-        href="/signup"
-        main-title="Sign in to your account"
-        second-title="create your account right now"
+        href="/login"
+        main-title="Forgot your password ?"
+        second-title="back to login page"
       />
 
       <or-divider />
 
-      <login-form />
+      <forgot-form />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Forgot',
   components: {
-    LoginForm: () => import('@/components/auth/LoginForm/login-form.vue'),
+    ForgotForm: () => import('@/components/auth/ForgotForm/forgot-form.vue'),
     OrDivider: () => import('@/components/common/OrDivider/OrDivider.vue'),
     FormHeader: () => import('@/components/auth/FormHeader/form-header.vue'),
   },

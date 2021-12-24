@@ -9,7 +9,7 @@
         placeholder="Username"
         v-model="username"
       />
-      <label for="username" class="input-label">Username</label>
+      <label for="username" class="auth__input-label">Username</label>
     </div>
 
     <!-- Email Field -->
@@ -21,7 +21,7 @@
         placeholder="username@gmail.com"
         v-model="email"
       />
-      <label for="email" class="input-label">Email</label>
+      <label for="email" class="auth__input-label">Email</label>
     </div>
 
     <!-- Password Field -->
@@ -33,14 +33,14 @@
         placeholder="Password"
         v-model="password"
       />
-      <label for="password" class="input-label">Password</label>
+      <label for="password" class="auth__input-label">Password</label>
     </div>
 
     <div class="alert alert-danger err-msg" role="alert" v-show="errorMessage">
       {{ this.errorMessage }}
     </div>
 
-    <!-- Remember me -->
+    <!-- Full name fields -->
     <div class="row">
       <div class="col">
         <div class="form-floating mb-3">
@@ -51,7 +51,7 @@
             placeholder="First Name"
             v-model="firstName"
           />
-          <label for="first-name" class="input-label">First Name</label>
+          <label for="first-name" class="auth__input-label">First Name</label>
         </div>
       </div>
 
@@ -64,15 +64,40 @@
             placeholder="Last Name"
             v-model="lastName"
           />
-          <label for="last-name" class="input-label">Last Name</label>
+          <label for="last-name" class="auth__input-label">Last Name</label>
         </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-floating mb-3">
+        <input class="form-control" type="date" id="date" placeholder="Date" v-model="date" />
+        <label for="date" class="auth__input-label">Date</label>
+      </div>
+    </div>
+
+    <select
+      class="form-select auth__user-type mb-3"
+      :class="{ 'auth__input-label': this.userType === '' }"
+      aria-label="Default select example"
+      v-model="userType"
+    >
+      <option disabled value="">Select your type</option>
+      <option value="learner">Learner</option>
+      <option value="instructor">Instructor</option>
+    </select>
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="form-check col-md">
+        <input class="form-check-input" type="checkbox" />
+        <label class="auth__input-label"> I agree on all terms, conditions </label>
       </div>
     </div>
 
     <!-- Signup Btn -->
     <button
       type="submit"
-      class="btn btn-block signup-btn"
+      class="btn btn-block auth__submit-btn"
       :disabled="!username || !password"
       @click.prevent="signup"
     >
@@ -96,14 +121,24 @@ export default {
       firstName: '',
       lastName: '',
 
+      date: '',
+      userType: '',
+
       errorMessage: '',
     };
   },
   computed: {
     payload() {
       return {
+        email: this.email,
         username: this.username,
         password: this.password,
+
+        firstName: this.firstName,
+        lastName: this.lastName,
+
+        date: this.date,
+        userType: this.userType,
       };
     },
   },
@@ -126,39 +161,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.form-main {
-  width: 100%;
-  min-height: 500px;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.input-label {
-  color: #777;
-}
-
-.signup-btn {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 6px;
-  width: 100%;
-  background-color: $main-color;
-  color: $white;
-
-  &:hover {
-    background-color: $sub-color;
-  }
-}
-
-.forgot-password {
-  text-align: end;
-}
-
-.forgot-text {
-  color: $main-color;
-  text-decoration: none;
-}
-</style>
