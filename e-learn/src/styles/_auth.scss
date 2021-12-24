@@ -33,4 +33,17 @@
   &__user-type {
     padding: 1rem 0.75rem;
   }
+
+  &__footer {
+    text-align: center;
+  }
+
+  &__footer-title {
+    color: $darker-gray;
+    margin-right: 4px;
+  }
+
+  &__link {
+    color: $sub-color;
+  }
 }

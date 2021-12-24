@@ -98,7 +98,7 @@
     <button
       type="submit"
       class="btn btn-block auth__submit-btn"
-      :disabled="!username || !password"
+      :disabled="!isAllCompleted"
       @click.prevent="signup"
     >
       Signup
@@ -128,6 +128,17 @@ export default {
     };
   },
   computed: {
+    isAllCompleted() {
+      return (
+        this.email &&
+        this.username &&
+        this.password &&
+        this.firstName &&
+        this.lastName &&
+        this.date &&
+        this.userType
+      );
+    },
     payload() {
       return {
         email: this.email,
@@ -151,6 +162,7 @@ export default {
 
           // if remember is set to true, set the user token in local storage
           // in success, redirect the use to home page
+          window.location = '/';
         })
         .catch(error => {
           // if error, set the error message to the received error message
