@@ -47,6 +47,11 @@ const routes = [
       hideNavbar: true,
     },
   },
+  {
+    path: '/users',
+    name: 'Manage Users',
+    component: () => import(/* webpackChunkName: "manage users" */ '@/views/ManageUsers.vue')
+  }
 ];
 
 const router = new VueRouter({
