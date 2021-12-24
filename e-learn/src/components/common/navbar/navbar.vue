@@ -2,32 +2,34 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white custom-nav">
     <div class="container">
       <a class="navbar-brand brand-name" href="/">
-        <img src="@/assets/logo.svg" class="brand-icon" />
+        <img src="./../../../assets/logo.svg" class="logo" alt="e-learn logo" /> e-learn
       </a>
 
       <button
         class="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        data-target="#nav-toggle-content"
-        aria-controls="nav-toggle-content"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
 
-      <div class="collapse navbar-collapse" id="nav-toggle-content">
-        <div class="custom-nav__options-list">
+        <div class="right-part custom-nav__options-list">
           <a
-            class="custom-nav__item"
-            v-for="(navItem, index) in navigation"
+            class="custom-nav__icon"
+            v-for="(feature, index) in features"
             :key="index"
-            :href="navItem.href"
-            :title="navItem.name"
+            :href="feature.href"
+            :title="feature.title"
           >
-            {{ navItem.name }}
+            <img :src="feature.imgSrc" :alt="feature.title" />
           </a>
+          <profile-dropdown></profile-dropdown>
         </div>
       </div>
     </div>
@@ -35,23 +37,43 @@
 </template>
 
 <script>
-const navigation = [
-  { href: '/about', name: 'Product' },
-  { href: '/about', name: 'Features' },
-  { href: '/about', name: 'Marketplace' },
-  { href: '/about', name: 'Company' },
-];
-
 export default {
   data: function () {
     return {
-      navigation,
+      features: [
+        {
+          href: '/',
+          title: 'Home',
+          imgSrc: 'https://img.icons8.com/ios/30/000000/home.png',
+        },
+        {
+          href: '/contact',
+          title: 'Contact',
+          imgSrc: 'https://img.icons8.com/ios/30/000000/mobile-email.png',
+        },
+        {
+          href: '/about',
+          title: 'About',
+          imgSrc: 'https://img.icons8.com/ios/30/000000/about-us-male.png',
+        },
+      ],
     };
   },
-  components: {},
+  components: {
+    'profile-dropdown': () => import('@/components/common/ProfileDropdown/ProfileDropdown'),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-@import './navbar.scss';
+.navbar-collapse {
+  flex-grow: 0;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+}
+
+@import './Navbar.scss';
 </style>
