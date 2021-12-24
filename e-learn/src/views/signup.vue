@@ -1,6 +1,6 @@
 <template>
-  <div class="container c-auth-wrapper">
-    <div class="signup-form">
+  <div class="container auth">
+    <div class="auth__wrapper">
       <form-header
         href="/login"
         main-title="Create a new account"
@@ -24,22 +24,3 @@ export default {
   components: { FormHeader, OrDivider, SignupForm },
 };
 </script>
-
-<style lang="scss" scoped>
-.signup-form {
-  min-height: 576px;
-  max-width: 28rem;
-  width: 100%;
-}
-
-.c-auth-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-</style>
