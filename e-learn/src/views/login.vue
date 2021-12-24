@@ -4,7 +4,7 @@
       <form-header
         href="/signup"
         main-title="Sign in to your account"
-        second-title="create your account right now"
+        second-title="create your account right now!"
       />
 
       <or-divider />
