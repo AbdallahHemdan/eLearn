@@ -70,10 +70,6 @@ export default {
   flex-grow: 0;
 }
 
-.navbar-toggler {
-  border: 0;
-}
-
 [aria-expanded='true'] .navbar-toggler-icon {
   background-image: url('./../../../assets/svgs/close.svg');
 }

@@ -4,12 +4,18 @@
       <form-header
         href="/login"
         main-title="Forgot your password ?"
-        second-title="back to login page"
+        second-title="Please enter your email address"
       />
+
+      <forgot-form />
 
       <or-divider />
 
-      <forgot-form />
+      <div class="auth__footer">
+        <span class="auth__footer-title">Back to login ?</span>
+
+        <a class="auth__link" href="/login">Login</a>
+      </div>
     </div>
   </div>
 </template>

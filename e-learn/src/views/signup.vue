@@ -4,23 +4,29 @@
       <form-header
         href="/login"
         main-title="Create a new account"
-        second-title="already have an account ?"
+        second-title="Create a new account to learn, ask and share your thoughts with others."
       />
+
+      <signup-form />
 
       <or-divider />
 
-      <signup-form />
+      <div class="auth__footer">
+        <span class="auth__footer-title">Have an account?</span>
+
+        <a class="auth__link" href="/login">Login</a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import OrDivider from '../components/common/OrDivider/OrDivider.vue';
-import FormHeader from '../components/auth/FormHeader/form-header.vue';
-import SignupForm from '../components/auth/SingupForm/signup-form.vue';
-
 export default {
   name: 'Signup',
-  components: { FormHeader, OrDivider, SignupForm },
+  components: {
+    FormHeader: () => import('@/components/auth/FormHeader/form-header.vue'),
+    OrDivider: () => import('@/components/common/OrDivider/OrDivider.vue'),
+    SignupForm: () => import('@/components/auth/SingupForm/signup-form.vue'),
+  },
 };
 </script>

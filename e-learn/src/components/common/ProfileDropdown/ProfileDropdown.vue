@@ -25,7 +25,7 @@
       </a>
 
       <div class="logout">
-        <a class="dropdown-item" href="/" @click="logout">
+        <a class="dropdown-item" href="/login" @click="logout">
           <img src="@/assets/svgs/logout.svg" alt="logout icon" class="profile-options__icon" />
           Log Out
         </a>

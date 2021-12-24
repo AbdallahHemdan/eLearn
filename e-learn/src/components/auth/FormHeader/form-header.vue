@@ -5,8 +5,7 @@
     <h2 class="header__main-title">{{ mainTitle }}</h2>
 
     <p class="header__second-title-container">
-      <span>Or</span>
-      <a :href="href" class="header__second-title"> {{ secondTitle }} </a>
+      {{ secondTitle }}
     </p>
   </div>
 </template>
@@ -26,6 +25,7 @@ export default {
 .header {
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 
   &__logo-icon {
     height: 3rem;
@@ -44,7 +44,7 @@ export default {
 
   &__second-title-container {
     line-height: 1.25rem;
-    color: rgba(75, 85, 99, var(--tw-text-opacity));
+    color: $dark-gray;
     margin-top: 0.5rem;
     text-align: center;
   }

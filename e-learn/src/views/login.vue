@@ -4,12 +4,18 @@
       <form-header
         href="/signup"
         main-title="Sign in to your account"
-        second-title="create your account right now!"
+        second-title="Sign In into e-learn to learn, ask and share your thoughts with others."
       />
+
+      <login-form />
 
       <or-divider />
 
-      <login-form />
+      <div class="auth__footer">
+        <span class="auth__footer-title">Don't have an account?</span>
+
+        <a class="auth__link" href="/signup">Sign up</a>
+      </div>
     </div>
   </div>
 </template>
