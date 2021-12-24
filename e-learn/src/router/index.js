@@ -26,6 +26,14 @@ const routes = [
       hideNavbar: true,
     },
   },
+  {
+    path: '/forgot',
+    name: 'Forgot',
+    component: () => import(/* webpackChunkName: "forgot" */ '@/views/forgot.vue'),
+    meta: {
+      hideNavbar: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
