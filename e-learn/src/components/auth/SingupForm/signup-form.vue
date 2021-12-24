@@ -69,6 +69,24 @@
       </div>
     </div>
 
+    <div class="col">
+      <div class="form-floating mb-3">
+        <input class="form-control" type="date" id="date" placeholder="Date" v-model="date" />
+        <label for="date" class="auth__input-label">Date</label>
+      </div>
+    </div>
+
+    <select
+      class="form-select auth__user-type mb-3"
+      :class="{ 'auth__input-label': this.userType === '' }"
+      aria-label="Default select example"
+      v-model="userType"
+    >
+      <option disabled value="">Select your type</option>
+      <option value="learner">Learner</option>
+      <option value="instructor">Instructor</option>
+    </select>
+
     <div class="d-flex justify-content-between align-items-center">
       <div class="form-check col-md">
         <input class="form-check-input" type="checkbox" />
@@ -103,14 +121,24 @@ export default {
       firstName: '',
       lastName: '',
 
+      date: '',
+      userType: '',
+
       errorMessage: '',
     };
   },
   computed: {
     payload() {
       return {
+        email: this.email,
         username: this.username,
         password: this.password,
+
+        firstName: this.firstName,
+        lastName: this.lastName,
+
+        date: this.date,
+        userType: this.userType,
       };
     },
   },
