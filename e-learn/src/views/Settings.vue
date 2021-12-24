@@ -72,7 +72,7 @@
       <button
         type="submit"
         class="btn btn-block update-btn"
-        :disabled="!changed"
+        :disabled="!isChanged"
         @click.prevent="update"
       >
         Update
@@ -82,6 +82,9 @@
 </template>
 
 <script>
+import axios from "axios";
+import { base } from "@/utilities/api";
+
 export default {
   data() {
     return {
@@ -90,11 +93,77 @@ export default {
       lastName: "",
       email: "",
       birthDate: "",
-      changed: false,
+      changed: true,
+      userData: {},
     };
   },
   methods: {
-    update() {},
+    update() {
+      axios
+        .put(
+          `${base}/user-info?username=${this.userData.username}`,
+          this.payload
+        )
+        .then((response) => {
+          console.log(response);
+          this.getUserData();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getUserData() {
+      axios
+        .get(`${base}/user-info?username=${this.userData.username}`)
+        .then((response) => {
+          console.log(response);
+          this.userData = response.data;
+          this.updateModels();
+        })
+        .catch((error) => {
+          console.log(error);
+          // TO be removed after integration with backend
+          this.userData = {
+            username: "Eman",
+            email: "eothman21@gmail.com",
+            firstname: "Eman",
+            lastname: "Othman",
+            birthdate: "2000-02-21",
+            type: "Learner",
+          };
+          this.updateModels();
+        });
+    },
+    updateModels() {
+      // Search for object unpacking later
+      this.username = this.userData.username;
+      this.email = this.userData.email;
+      this.firstName = this.userData.firstname;
+      this.lastName = this.userData.lastname;
+      this.birthDate = this.userData.birthdate;
+    },
+  },
+  created: function () {
+    this.getUserData();
+  },
+  computed: {
+    isChanged: function () {
+      if (this.userData.email !== this.email) return true;
+      if (this.userData.username !== this.username) return true;
+      if (this.userData.lastname !== this.lastName) return true;
+      if (this.userData.firstname !== this.firstName) return true;
+      if (this.userData.birthdate !== this.birthDate) return true;
+      return false;
+    },
+    payload() {
+      return {
+        email: this.email,
+        username: this.username,
+        lastName: this.lastName,
+        firstName: this.firstName,
+        birthdate: this.birthDate,
+      };
+    },
   },
 };
 </script>
