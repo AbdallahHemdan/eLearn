@@ -29,7 +29,7 @@ const routes = [
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import(/* webpackChunkName: "settings" */ '@/views/Settings.vue'),
+    component: () => import(/* webpackChunkName: "settings" */ '@/views/settings.vue'),
   },
   {
     path: '/forgot',
