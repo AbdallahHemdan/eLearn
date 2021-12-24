@@ -1,10 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ 'app-wrapper': showNavbar }">
     <navbar v-if="showNavbar" />
 
-    <main class="container">
+    <main :class="{ container: true, 'main-wrapper': showNavbar }">
       <router-view />
     </main>
+
+    <AppFooter v-if="showNavbar" />
   </div>
 </template>
 
@@ -12,7 +14,8 @@
 export default {
   name: 'App',
   components: {
-    navbar: () => import(/* webpackChunkName: "navbar" */ '@/components/common/navbar/navbar.vue'),
+    navbar: () => import('@/components/common/navbar/navbar.vue'),
+    AppFooter: () => import('@/components/common/AppFooter/AppFooter.vue'),
   },
   computed: {
     showNavbar() {
@@ -24,6 +27,18 @@ export default {
 
 <style lang="scss">
 #app {
-  height: 100vh;
+  min-height: 100vh;
+}
+
+main {
+  height: 100%;
+}
+
+.main-wrapper {
+  margin-top: 40px;
+}
+
+.app-wrapper {
+  margin-top: 110px;
 }
 </style>
