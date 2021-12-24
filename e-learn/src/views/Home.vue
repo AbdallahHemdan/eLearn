@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <carousel />
+    <marketing />
   </div>
 </template>
 
@@ -8,8 +9,8 @@
 export default {
   name: 'Home',
   components: {
-    carousel: () =>
-      import(/* webpackChunkName: "carousel" */ '@/components/common/carousel/carousel.vue'),
+    carousel: () => import('@/components/common/carousel/carousel.vue'),
+    marketing: () => import('@/components/common/marketing/marketing.vue'),
   },
 };
 </script>

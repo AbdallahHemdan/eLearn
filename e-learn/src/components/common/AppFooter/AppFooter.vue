@@ -64,7 +64,6 @@ export default {
 }
 
 .footer {
-  margin-top: -36px;
-  margin-bottom: 20px;
+  margin: 30px auto;
 }
 </style>
