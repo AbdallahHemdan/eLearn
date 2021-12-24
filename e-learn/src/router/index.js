@@ -47,6 +47,14 @@ const routes = [
       hideNavbar: true,
     },
   },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('@/views/404.vue'),
+    meta: {
+      hideNavbar: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
