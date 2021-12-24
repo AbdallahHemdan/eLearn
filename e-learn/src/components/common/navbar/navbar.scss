@@ -1,4 +1,6 @@
 .custom-nav {
+  border-bottom: 1px solid $lighter-gray;
+
   .brand-name {
     color: $main-color;
     font-size: $font-size-8x;
@@ -12,15 +14,7 @@
     }
   }
 
-  .brand-icon {
-    width: 45px;
-    height: 45px;
-  }
-
-  &__item {
-    text-decoration: none;
-    font-weight: 500;
-    color: rgb(107, 114, 128);
+  &__icon {
     margin: 0 10px;
   }
 
