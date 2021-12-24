@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+    component: () => import(/* webpackChunkName: "home" */ '@/views/home.vue'),
   },
   {
     path: '/login',
@@ -29,7 +29,7 @@ const routes = [
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import('@/views/Settings.vue')
+    component: () => import(/* webpackChunkName: "settings" */ '@/views/Settings.vue'),
   },
   {
     path: '/forgot',
