@@ -1,5 +1,5 @@
 <template>
-  <div class="col">
+  <div class="col recent">
     <div class="tag" :style="`color:${tagColor};background-color:${tagBgColor};`">Course</div>
 
     <div class="course__title">{{ title }}</div>
@@ -87,5 +87,9 @@ export default {
 
 .course__date {
   color: $dark-gray;
+}
+
+.recent {
+  margin-bottom: 4rem;
 }
 </style>

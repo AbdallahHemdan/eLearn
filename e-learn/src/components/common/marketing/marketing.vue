@@ -228,5 +228,6 @@ export default {
 
 .recent__sub-title {
   color: gray;
+  margin-bottom: 24px;
 }
 </style>
