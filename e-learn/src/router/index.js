@@ -48,6 +48,11 @@ const routes = [
     },
   },
   {
+    path: '/course/:id',
+    name: 'Course',
+    component: () => import(/* webpackChunkName: "course" */ '@/views/course.vue'),
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: () => import('@/views/404.vue'),
