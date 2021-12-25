@@ -21,13 +21,18 @@
 
         <div class="right-part custom-nav__options-list">
           <a
-            class="custom-nav__icon"
+            class="custom-nav__item"
             v-for="(feature, index) in features"
             :key="index"
             :href="feature.href"
             :title="feature.title"
           >
-            <img :src="feature.imgSrc" :alt="feature.title" />
+            <img
+              class="custom-nav__icon"
+              :title="feature.title"
+              :src="feature.imgSrc"
+              :alt="feature.title"
+            />
           </a>
           <profile-dropdown></profile-dropdown>
         </div>
@@ -44,17 +49,17 @@ export default {
         {
           href: '/',
           title: 'Home',
-          imgSrc: 'https://img.icons8.com/ios/30/000000/home.png',
+          imgSrc: require('@/assets/nav/home.png'),
         },
         {
-          href: '/contact',
-          title: 'Contact',
-          imgSrc: 'https://img.icons8.com/ios/30/000000/mobile-email.png',
+          href: '/courses',
+          title: 'Courses',
+          imgSrc: require('@/assets/nav/menu.png'),
         },
         {
-          href: '/about',
-          title: 'About',
-          imgSrc: 'https://img.icons8.com/ios/30/000000/about-us-male.png',
+          href: '/my-courses',
+          title: 'My Courses',
+          imgSrc: require('@/assets/nav/check.png'),
         },
       ],
     };
