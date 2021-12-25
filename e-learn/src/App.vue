@@ -30,10 +30,6 @@ main {
   height: 100%;
 }
 
-.main-wrapper {
-  min-height: 100vh;
-}
-
 .app-wrapper {
   margin-top: 110px;
 }
