@@ -1,9 +1,9 @@
 <template>
-  <div class="course container">
+  <div class="course">
     <div class="jumbotron jumbotron-fluid">
       <div class="course__header">
         <div class="header__titles">
-          <h1 class="header__main-title display-4">The Course name is</h1>
+          <h1 class="header__main-title display-4">Enrich your yourself in</h1>
           <h1 class="header__sub-title display-4">{{ name }}</h1>
         </div>
         <p class="lead">
@@ -37,10 +37,11 @@
 
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link" :class="{ active: this.isQA }" @click="setToQA">Q & A</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" :class="{ active: !this.isQA }" @click="setToActivities">Activities</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" :class="{ active: this.isQA }" @click="setToQA">Q & A</a>
       </li>
     </ul>
 
@@ -48,6 +49,8 @@
       <QA v-if="isQA" />
       <Activities v-else />
     </div>
+
+    <hr class="featurette-divider" />
   </div>
 </template>
 
@@ -60,7 +63,7 @@ export default {
       description: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
           Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat
           commodo.`,
-      isQA: true,
+      isQA: false,
       instructorName: 'John Doe',
       instructorTitle: 'Englist Instructor at AUC',
     };
@@ -142,5 +145,9 @@ export default {
 
 .sub-dummy-title {
   color: $dark-gray;
+}
+
+.featurette-divider {
+  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
 }
 </style>
