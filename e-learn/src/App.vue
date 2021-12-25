@@ -15,7 +15,7 @@ export default {
   name: 'App',
   components: {
     navbar: () => import('@/components/common/navbar/navbar.vue'),
-    AppFooter: () => import('@/components/common/AppFooter/AppFooter.vue'),
+    AppFooter: () => import('@/components/common/app-footer/app-footer.vue'),
   },
   computed: {
     showNavbar() {

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="new-question">
-      <img src="./../../assets/svgs/avatar.svg" alt="user image" class="user__image" />
+      <img src="@/assets/svgs/avatar.svg" alt="user image" class="user__image" />
       <button class="post" @click="openModal">What is on your mind?</button>
     </div>
   </div>

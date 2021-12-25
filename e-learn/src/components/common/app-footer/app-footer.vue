@@ -2,7 +2,7 @@
   <footer class="container footer">
     <div class="row">
       <div class="col-12 col-md">
-        <img src="./../../../assets/logo.svg" alt="e-learn logo" class="logo" />
+        <img src="@/assets/logo.svg" alt="e-learn logo" class="logo" />
         <small class="d-block mb-3 text-muted">&copy; 2017–2021</small>
       </div>
 

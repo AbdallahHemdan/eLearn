@@ -8,8 +8,8 @@
 <script>
 export default {
   components: {
-    embeddedVideo: () => import('@/components/course/embeddedVideo'),
-    embeddedPdf: () => import('@/components/course/embeddedPdf'),
+    embeddedVideo: () => import('@/components/course/embedded-video/embedded-video.vue'),
+    embeddedPdf: () => import('@/components/course/embedded-pdf/embedded-pdf.vue'),
   },
 };
 </script>

@@ -24,9 +24,9 @@
 export default {
   name: 'Signup',
   components: {
-    FormHeader: () => import('@/components/auth/FormHeader/form-header.vue'),
-    OrDivider: () => import('@/components/common/OrDivider/OrDivider.vue'),
-    SignupForm: () => import('@/components/auth/SingupForm/signup-form.vue'),
+    FormHeader: () => import('@/components/auth/form-header/form-header.vue'),
+    OrDivider: () => import('@/components/common/or-divider/or-divider.vue'),
+    SignupForm: () => import('@/components/auth/singup-form/signup-form.vue'),
   },
 };
 </script>

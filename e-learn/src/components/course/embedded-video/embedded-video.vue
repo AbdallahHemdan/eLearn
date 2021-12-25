@@ -1,15 +1,23 @@
 <template>
-  <div class="pdf">
+  <div class="video">
     <activity-header />
-    <iframe class="embeddedPdf" :src="pdfUrl" title="Pdf viewer" allowfullscreen></iframe>
+
+    <iframe
+      class="embeddedVideo"
+      :src="videoUrl"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'EmbeddedPdf',
+  name: 'EmbeddedVideo',
   props: {
-    pdfUrl: {
+    videoUrl: {
       type: String,
       required: true,
     },
@@ -27,13 +35,13 @@ export default {
     },
   },
   components: {
-    ActivityHeader: () => import('@/components/course/activity-header'),
+    ActivityHeader: () => import('@/components/course/activity-header/activity-header.vue'),
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.embeddedPdf {
+.embeddedVideo {
   width: 100%;
   aspect-ratio: 16/9;
   margin-bottom: 32px;

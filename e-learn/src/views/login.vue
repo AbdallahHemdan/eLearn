@@ -24,9 +24,9 @@
 export default {
   name: 'Login',
   components: {
-    LoginForm: () => import('@/components/auth/LoginForm/login-form.vue'),
-    OrDivider: () => import('@/components/common/OrDivider/OrDivider.vue'),
-    FormHeader: () => import('@/components/auth/FormHeader/form-header.vue'),
+    LoginForm: () => import('@/components/auth/login-form/login-form.vue'),
+    OrDivider: () => import('@/components/common/or-divider/or-divider.vue'),
+    FormHeader: () => import('@/components/auth/form-header/form-header.vue'),
   },
 };
 </script>

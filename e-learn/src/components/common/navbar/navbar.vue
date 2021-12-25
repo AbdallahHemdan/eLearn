@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white custom-nav">
     <div class="container">
       <a class="navbar-brand brand-name" href="/">
-        <img src="./../../../assets/logo.svg" class="logo" alt="e-learn logo" /> e-learn
+        <img src="@/assets/logo.svg" class="logo" alt="e-learn logo" /> e-learn
       </a>
 
       <button
@@ -65,7 +65,7 @@ export default {
     };
   },
   components: {
-    'profile-dropdown': () => import('@/components/common/ProfileDropdown/ProfileDropdown'),
+    'profile-dropdown': () => import('@/components/common/profile-dropdown/profile-dropdown.vue'),
   },
 };
 </script>
@@ -84,5 +84,5 @@ export default {
   height: 35px;
 }
 
-@import './Navbar.scss';
+@import './navbar.scss';
 </style>

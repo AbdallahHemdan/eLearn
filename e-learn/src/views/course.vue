@@ -77,8 +77,8 @@ export default {
     },
   },
   components: {
-    QA: () => import('@/components/course/qa.vue'),
-    Activities: () => import('@/components/course/activities.vue'),
+    QA: () => import('@/components/course/qa/qa.vue'),
+    Activities: () => import('@/components/course/activities/activities.vue'),
   },
 };
 </script>

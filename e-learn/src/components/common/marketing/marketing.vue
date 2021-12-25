@@ -212,7 +212,7 @@
 export default {
   name: 'Marketing',
   components: {
-    'recent-course': () => import('@/components/course/recent.vue'),
+    'recent-course': () => import('@/components/course/recent/recent.vue'),
   },
 };
 </script>

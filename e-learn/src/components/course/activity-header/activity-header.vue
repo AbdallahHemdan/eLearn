@@ -1,7 +1,7 @@
 <template>
   <div class="activity__header">
     <div class="instructor">
-      <img src="./../../assets/svgs/avatar.svg" alt="instructor image" class="instructor__image" />
+      <img src="@/assets/svgs/avatar.svg" alt="instructor image" class="instructor__image" />
       <div class="activity">
         <div class="instructor__name">
           <!-- {{ instructorName }} -->

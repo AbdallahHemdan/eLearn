@@ -24,9 +24,9 @@
 export default {
   name: 'Reset',
   components: {
-    ResetForm: () => import('@/components/auth/ResetForm/reset-form.vue'),
-    OrDivider: () => import('@/components/common/OrDivider/OrDivider.vue'),
-    FormHeader: () => import('@/components/auth/FormHeader/form-header.vue'),
+    ResetForm: () => import('@/components/auth/reset-form/reset-form.vue'),
+    OrDivider: () => import('@/components/common/or-divider/or-divider.vue'),
+    FormHeader: () => import('@/components/auth/form-header/form-header.vue'),
   },
 };
 </script>

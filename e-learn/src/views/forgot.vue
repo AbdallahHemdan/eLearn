@@ -24,9 +24,9 @@
 export default {
   name: 'Forgot',
   components: {
-    ForgotForm: () => import('@/components/auth/ForgotForm/forgot-form.vue'),
-    OrDivider: () => import('@/components/common/OrDivider/OrDivider.vue'),
-    FormHeader: () => import('@/components/auth/FormHeader/form-header.vue'),
+    ForgotForm: () => import('@/components/auth/forgot-form/forgot-form.vue'),
+    OrDivider: () => import('@/components/common/or-divider/or-divider.vue'),
+    FormHeader: () => import('@/components/auth/form-header/form-header.vue'),
   },
 };
 </script>
