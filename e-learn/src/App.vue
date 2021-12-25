@@ -32,7 +32,6 @@ main {
 
 .main-wrapper {
   min-height: 100vh;
-  margin-top: 40px;
 }
 
 .app-wrapper {
