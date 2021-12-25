@@ -25,7 +25,6 @@
         </p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div>
-      <!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <svg
           class="bd-placeholder-img rounded-circle"
@@ -49,7 +48,6 @@
         </p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div>
-      <!-- /.col-lg-4 -->
       <div class="col-lg-4">
         <svg
           class="bd-placeholder-img rounded-circle"
@@ -73,11 +71,47 @@
         </p>
         <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div>
-      <!-- /.col-lg-4 -->
     </div>
-    <!-- /.row -->
 
-    <!-- START THE FEATURETTES -->
+    <hr class="featurette-divider" />
+
+    <div class="recent">
+      <div class="recent__title">Recent Courses</div>
+      <div class="recent__sub-title">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias saepe explicabo ipsa
+        blanditiis doloribus dolor est minus.
+      </div>
+
+      <div class="row mt-lg-5">
+        <recent-course
+          tag-color="#433ca9"
+          tag-bg-color="#e0e7ff"
+          title="Boost your conversation rate"
+          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum necessitatibus porro,"
+          instructor-name="Jon Doe"
+          instructor-image="svgs/avatar.svg"
+          course-date="Mar 16, 2021"
+        />
+        <recent-course
+          tag-color="#a22155"
+          tag-bg-color="#fce7f3"
+          title="Boost your conversation rate"
+          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum necessitatibus porro,"
+          instructor-name="Jon Doe"
+          instructor-image="svgs/avatar.svg"
+          course-date="Mar 16, 2021"
+        />
+        <recent-course
+          tag-color="#086047"
+          tag-bg-color="#d1fae5"
+          title="Boost your conversation rate"
+          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum necessitatibus porro,"
+          instructor-name="Jon Doe"
+          instructor-image="svgs/avatar.svg"
+          course-date="Mar 16, 2021"
+        />
+      </div>
+    </div>
 
     <hr class="featurette-divider" />
 
@@ -177,9 +211,22 @@
 <script>
 export default {
   name: 'Marketing',
+  components: {
+    'recent-course': () => import('@/components/course/recent.vue'),
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 @import './../carousel/carousel.scss';
+
+.recent__title {
+  font-size: 35px;
+  font-weight: 700;
+  margin-top: -30px;
+}
+
+.recent__sub-title {
+  color: gray;
+}
 </style>

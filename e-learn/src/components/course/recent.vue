@@ -1,0 +1,91 @@
+<template>
+  <div class="col">
+    <div class="tag" :style="`color:${tagColor};background-color:${tagBgColor};`">Course</div>
+
+    <div class="course__title">{{ title }}</div>
+
+    <div class="course__description">
+      {{ description }}
+    </div>
+
+    <div class="instructor">
+      <img :src="require(`@/assets/${instructorImage}`)" class="instructor__image" />
+
+      <div class="instructor__info">
+        <div class="instructor__name">{{ instructorName }}</div>
+        <div class="course__date">{{ courseDate }}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'RecentCourse',
+  props: {
+    tagColor: {
+      type: String,
+    },
+    tagBgColor: {
+      type: String,
+    },
+    title: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    instructorName: {
+      type: String,
+    },
+    instructorImage: {
+      type: String,
+    },
+    courseDate: {
+      type: String,
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.tag {
+  background-color: #e0e7ff;
+  color: #433ca9;
+  font-weight: 600;
+  width: fit-content;
+  padding: 0px 14px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+
+.course__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.course__description {
+  color: $darker-gray;
+  margin-bottom: 32px;
+}
+
+.instructor__image {
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+}
+
+.instructor__name {
+  font-weight: 700;
+}
+
+.course__date {
+  color: $dark-gray;
+}
+</style>

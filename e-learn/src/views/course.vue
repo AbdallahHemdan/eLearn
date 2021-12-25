@@ -3,7 +3,7 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="course__header">
         <div class="header__titles">
-          <h1 class="header__main-title display-4">Enrich your yourself in</h1>
+          <h1 class="header__main-title display-4">Boost your skills in</h1>
           <h1 class="header__sub-title display-4">{{ name }}</h1>
         </div>
         <p class="lead">
