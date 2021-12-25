@@ -26,16 +26,8 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  min-height: 100vh;
-}
-
 main {
   height: 100%;
-}
-
-.main-wrapper {
-  margin-top: 40px;
 }
 
 .app-wrapper {

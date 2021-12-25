@@ -19,14 +19,10 @@
         <img src="@/assets/svgs/avatar.svg" alt="avatar image" class="profile-options__icon" />
         Profile
       </a>
-      <a class="dropdown-item" href="/settings">
-        <img src="@/assets/svgs/settings.svg" alt="settings icon" class="profile-options__icon" />
-        Settings
-      </a>
 
       <div class="logout">
         <a class="dropdown-item" href="/login" @click="logout">
-          <img src="@/assets/svgs/logout.svg" alt="logout icon" class="profile-options__icon" />
+          <img src="@/assets/nav/logout.png" alt="logout icon" class="profile-options__icon" />
           Log Out
         </a>
       </div>
@@ -60,6 +56,17 @@ export default {
 .right-dropdown {
   position: absolute;
   right: 0px;
+}
+
+.dropdown-toggle::after {
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: '';
+  border-top: 0.3em solid $main-color;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
 }
 
 @import '@/components/common/navbar/navbar.scss';

@@ -4,12 +4,18 @@
       <form-header
         href="/login"
         main-title="Reset your password"
-        second-title="back to login page"
+        second-title="Please enter your password twice in order to reset it."
       />
+
+      <reset-form />
 
       <or-divider />
 
-      <reset-form />
+      <div class="auth__footer">
+        <span class="auth__footer-title">Have an account?</span>
+
+        <a class="auth__link" href="/login">Login</a>
+      </div>
     </div>
   </div>
 </template>

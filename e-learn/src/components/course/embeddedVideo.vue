@@ -1,0 +1,49 @@
+<template>
+  <div class="video">
+    <activity-header />
+
+    <iframe
+      class="embeddedVideo"
+      :src="videoUrl"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'EmbeddedVideo',
+  props: {
+    videoUrl: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: false,
+    },
+    date: {
+      type: String,
+      required: false,
+    },
+    instructorName: {
+      type: String,
+      required: false,
+    },
+  },
+  components: {
+    ActivityHeader: () => import('@/components/course/activity-header'),
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.embeddedVideo {
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin-bottom: 32px;
+}
+</style>

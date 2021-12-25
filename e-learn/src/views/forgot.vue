@@ -4,7 +4,7 @@
       <form-header
         href="/login"
         main-title="Forgot your password ?"
-        second-title="Please enter your email address"
+        second-title="Don't worry! Just fill in your email and we'll send you a link to reset your password."
       />
 
       <forgot-form />

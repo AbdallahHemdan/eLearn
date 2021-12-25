@@ -29,7 +29,7 @@ const routes = [
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import(/* webpackChunkName: "settings" */ '@/views/Settings.vue'),
+    component: () => import(/* webpackChunkName: "settings" */ '@/views/settings.vue'),
   },
   {
     path: '/forgot',
@@ -51,7 +51,20 @@ const routes = [
     path: '/users',
     name: 'Manage Users',
     component: () => import(/* webpackChunkName: "manage users" */ '@/views/ManageUsers.vue')
-  }
+  },
+  {
+    path: '/course/:id',
+    name: 'Course',
+    component: () => import(/* webpackChunkName: "course" */ '@/views/course.vue'),
+  },
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('@/views/404.vue'),
+    meta: {
+      hideNavbar: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
