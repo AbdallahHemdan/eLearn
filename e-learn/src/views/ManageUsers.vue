@@ -1,13 +1,13 @@
 <template>
   <div class="manage-container">
-    <table class="table table-borderless table-fixed">
+    <table class="table table-borderless">
       <thead>
         <tr>
           <th scope="col" class="table__title">Users</th>
         </tr>
       </thead>
       <thead>
-        <tr class="table__header">
+        <tr class="table__headers">
           <th scope="col">Username</th>
           <th scope="col">Role</th>
           <th scope="col">Action</th>
@@ -158,7 +158,7 @@ export default {
       font-size: 20px;
     }
 
-    &__header {
+    &__headers {
       background-color: $white-smoke;
       th {
         padding: 15px;
