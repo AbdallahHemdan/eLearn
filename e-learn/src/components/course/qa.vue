@@ -34,10 +34,12 @@ export default {
 }
 
 .post {
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   width: 100%;
   height: 50px;
-  background-color: transparent;
   text-align: start;
+  background-color: #f0f2f547;
+  border-radius: 16px;
+  color: gray;
 }
 </style>
