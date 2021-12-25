@@ -50,7 +50,7 @@ const routes = [
   {
     path: '/users',
     name: 'Manage Users',
-    component: () => import(/* webpackChunkName: "manage users" */ '@/views/ManageUsers.vue')
+    component: () => import(/* webpackChunkName: "manage users" */ '@/views/manage-users.vue')
   },
   {
     path: '/course/:id',
