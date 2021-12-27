@@ -65,6 +65,11 @@ const routes = [
       hideNavbar: true,
     },
   },
+  {
+    path: '/courses',
+    name: 'Courses',
+    component: () => import('@/views/courses.vue'),
+  }
 ];
 
 const router = new VueRouter({
