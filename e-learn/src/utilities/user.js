@@ -7,7 +7,7 @@ const getUserInfo = () => {
     username: 'Abdallah Hemdan',
     subtitle: 'Frontend Engineer',
     description: 'Part time ninja',
-    type: 'learner'
+    type: 'instructor'
   };
 
   return userInfo;
