@@ -12,7 +12,9 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Create new Course</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">
+            Create new Course
+          </h5>
           <button
             type="button"
             class="btn-close"
@@ -45,10 +47,17 @@
           <span class="error" v-if="!fullInfo">Please enter full info</span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="clearData">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            @click="clearData"
+          >
             Close
           </button>
-          <button type="button" class="btn create-btn" @click="createCourse">Create</button>
+          <button type="button" class="btn create-btn" @click="createCourse">
+            Create
+          </button>
         </div>
       </div>
     </div>
@@ -56,14 +65,14 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
+import axios from "axios";
+import { base } from "@/utilities/api";
 
 const getUserToken = () =>
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIzLCJ1c2VybmFtZSI6Ik1haGJvdWJBZGVsIiwiZW1haWwiOiJtYWhib3ViQWRlbEBnbWFpbC5jb20iLCJwYXNzd29yZCI6InNpb2Roc2lkc2kiLCJmaXJzdE5hbWUiOiJBaG1lZCIsImxhc3ROYW1lIjoiQWRlbCIsImJpcnRoRGF0ZSI6IjIwMTktMDItMDIiLCJjb3Vyc2VzSWRzIjpbXSwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjQwNzI2NjE5LCJleHAiOjE2NDA4MTMwMTl9.uw-tRh2k1xt5x5oqtzcYSz2aSg2u6uHqJ7IhvhWgGZk';
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIzLCJ1c2VybmFtZSI6Ik1haGJvdWJBZGVsIiwiZW1haWwiOiJtYWhib3ViQWRlbEBnbWFpbC5jb20iLCJwYXNzd29yZCI6InNpb2Roc2lkc2kiLCJmaXJzdE5hbWUiOiJBaG1lZCIsImxhc3ROYW1lIjoiQWRlbCIsImJpcnRoRGF0ZSI6IjIwMTktMDItMDIiLCJjb3Vyc2VzSWRzIjpbXSwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjQwNzI2NjE5LCJleHAiOjE2NDA4MTMwMTl9.uw-tRh2k1xt5x5oqtzcYSz2aSg2u6uHqJ7IhvhWgGZk";
 
 export default {
-  name: 'CreateCoursePopup',
+  name: "CreateCoursePopup",
   props: {
     instructorName: {
       type: String,
@@ -72,14 +81,14 @@ export default {
   },
   data() {
     return {
-      courseName: '',
-      description: '',
+      courseName: "",
+      description: "",
       fullInfo: true,
     };
   },
   methods: {
     createCourse() {
-      if (this.courseName == '' || this.description == '') {
+      if (this.courseName == "" || this.description == "") {
         this.fullInfo = false;
         return;
       }
@@ -91,20 +100,22 @@ export default {
             syllabus: this.description,
           },
           {
-            token: getUserToken(),
-          },
+            headers: {
+              Authorization: `Bearer ${getUserToken()}`,
+            },
+          }
         )
-        .then(response => {
+        .then((response) => {
           console.log(response);
           this.clearData();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     clearData() {
-      this.courseName = '';
-      this.description = '';
+      this.courseName = "";
+      this.description = "";
       this.fullInfo = true;
     },
   },

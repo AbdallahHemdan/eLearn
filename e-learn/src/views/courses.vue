@@ -4,7 +4,7 @@
       <div class="col">
         <span class="courses-header__title">All Courses</span>
       </div>
-      <div class="col" v-if="userInfo.type == 'instructor'">
+      <div class="col" v-if="userInfo.type != 'learner'">
         <button
           type="button"
           class="btn create-course-btn"
