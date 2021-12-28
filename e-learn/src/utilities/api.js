@@ -1,2 +1,2 @@
-const base = '/api/v1/';
+const base = 'http://localhost:4000/api';
 export { base };
