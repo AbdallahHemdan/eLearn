@@ -1,15 +1,9 @@
 <template>
   <form class="login">
-    <!-- Username Field -->
+    <!-- Email Field -->
     <div class="form-floating mb-3">
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="Username"
-        v-model="username"
-      />
-      <label for="username" class="auth__input-label">Username</label>
+      <input type="email" class="form-control" id="email" placeholder="Email" v-model="email" />
+      <label for="email" class="auth__input-label">Email</label>
     </div>
 
     <!-- Password Field -->
@@ -50,7 +44,7 @@
     <button
       type="submit"
       class="auth__submit-btn btn btn-block"
-      :disabled="!username || !password"
+      :disabled="!email || !password"
       @click.prevent="submit"
     >
       Log In
@@ -66,7 +60,7 @@ export default {
   name: 'LoginForm',
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
       remember: false,
       errorMessage: '',
@@ -75,7 +69,7 @@ export default {
   computed: {
     payload() {
       return {
-        username: this.username,
+        email: this.email,
         password: this.password,
       };
     },
