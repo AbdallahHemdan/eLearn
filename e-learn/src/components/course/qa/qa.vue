@@ -58,11 +58,21 @@ export default {
       console.log('Open Modal');
     },
     post() {
-      axios.post(`${base}/${'1'}/question`, this.payload, {
-        headers: {
-          Authorization: `Bearer ${getAccessToken()}`,
-        },
-      });
+      axios
+        .post(`${base}/course/${'1'}/questions`, this.payload, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
+        .then(({ data }) => {
+          console.log(data);
+          this.newComment = '';
+        })
+        .catch(err => {
+          console.log(err);
+        });
+
+      this.question = '';
     },
   },
 };
