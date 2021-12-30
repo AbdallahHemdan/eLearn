@@ -18,4 +18,8 @@ const getAccessToken = () => {
   return localStorage.getItem('accessToken');
 };
 
-export { isLoggedIn, setUserData, getUserData, setAccessToken, getAccessToken };
+const clearLocalStorage = () => {
+  localStorage.clear();
+};
+
+export { isLoggedIn, setUserData, getUserData, setAccessToken, getAccessToken, clearLocalStorage };
