@@ -57,7 +57,7 @@ export default {
       console.log('Open Modal');
     },
     post() {
-      axios.post(`${base}/questions`, this.payload, {
+      axios.post(`${base}/${'1'}/question`, this.payload, {
         headers: {
           Authorization: `Bearer ${getAccessToken()}`,
         },
