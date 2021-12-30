@@ -31,6 +31,7 @@
 
 <script>
 import axios from 'axios';
+import { base } from '@/utilities/api';
 import { getAccessToken } from '@/utilities/auth';
 
 export default {
