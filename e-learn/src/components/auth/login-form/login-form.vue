@@ -55,6 +55,7 @@
 <script>
 import axios from 'axios';
 import { base } from '@/utilities/api';
+import { setAccessToken, setUserData } from '@/utilities/auth';
 
 export default {
   name: 'LoginForm',
@@ -78,8 +79,10 @@ export default {
     submit() {
       axios
         .post(`${base}/login`, this.payload)
-        .then(response => {
-          console.log(response);
+        .then(({ data }) => {
+          console.log(data);
+          setAccessToken(data.token);
+          setUserData(data.userData);
 
           // if remember is set to true, set the user token in local storage
           // in success, redirect the use to home page
