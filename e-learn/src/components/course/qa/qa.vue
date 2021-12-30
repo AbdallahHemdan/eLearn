@@ -59,7 +59,7 @@ export default {
     },
     post() {
       axios
-        .post(`${base}/course/${'1'}/questions`, this.payload, {
+        .post(`${base}/courses/${'1'}/questions`, this.payload, {
           headers: {
             Authorization: `Bearer ${getAccessToken()}`,
           },

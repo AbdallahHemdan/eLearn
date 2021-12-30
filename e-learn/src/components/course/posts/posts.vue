@@ -53,6 +53,7 @@
           <button
             type="button"
             class="btn btn-outline-secondary add-comment__btn"
+            @click.prevent="addComment"
             :disabled="!newComment"
           >
             Comment
@@ -115,8 +116,16 @@ export default {
     },
   },
   methods: {
-    postComment() {
-      axios.post(`${base}/courses/${'1'}/answers`, this.payload).then(response => {});
+    addComment() {
+      axios
+        .post(`${base}/courses/${'1'}/answers`, this.payload)
+        .then(({ data }) => {
+          console.log('data', data);
+          this.newComment = '';
+        })
+        .catch(err => {
+          console.log('err', err);
+        });
     },
   },
 };
