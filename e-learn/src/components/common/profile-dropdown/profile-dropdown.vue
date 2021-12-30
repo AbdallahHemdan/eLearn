@@ -8,7 +8,7 @@
       aria-haspopup="true"
       aria-expanded="false"
     >
-      <img :src="userInfo.image" class="profile-options__img" alt="profile" />
+      <img :src="userImage" class="profile-options__img" alt="profile" />
     </a>
 
     <div
@@ -16,7 +16,7 @@
       aria-labelledby="dropdownMenuButton"
     >
       <a class="dropdown-item" :href="`/profile/${userInfo.id}`">
-        <img src="@/assets/svgs/avatar.svg" alt="avatar image" class="profile-options__icon" />
+        <img :src="userImage" alt="avatar image" class="profile-options__icon" />
         Profile
       </a>
 
@@ -38,6 +38,7 @@ export default {
   data: function () {
     return {
       userInfo: {},
+      userImage: '',
     };
   },
   methods: {
@@ -46,6 +47,7 @@ export default {
     },
     setUserInfo() {
       this.userInfo = getUserData();
+      this.userImage = `https://avatars.dicebear.com/api/initials/${this.userInfo.firstName}.svg?background=%234f46e5`
     },
   },
   mounted() {
