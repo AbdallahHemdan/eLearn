@@ -32,6 +32,7 @@
 
 <script>
 import { getUserInfo } from '@/utilities/user';
+import { clearLocalStorage } from '@/utilities/auth';
 
 export default {
   name: 'ProfileDropdown',
@@ -41,8 +42,10 @@ export default {
     };
   },
   methods: {
-    logout: function () {},
-    setUserInfo: function () {
+    logout() {
+      clearLocalStorage();
+    },
+    setUserInfo() {
       this.userInfo = getUserInfo();
     },
   },
