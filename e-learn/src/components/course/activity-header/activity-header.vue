@@ -57,7 +57,7 @@ export default {
   &__image {
     width: 50px;
     height: 50px;
-    margin-right: 8px;
+    margin-right: 16px;
   }
 
   &__name {

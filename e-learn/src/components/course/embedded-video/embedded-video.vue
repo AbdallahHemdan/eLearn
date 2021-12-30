@@ -41,6 +41,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.video {
+  padding: 24px 24px 0;
+  border-radius: 10px;
+  border: 1px solid rgba(108, 122, 137, 0.25);
+  margin-bottom: 32px;
+}
+
 .embeddedVideo {
   width: 100%;
   aspect-ratio: 16/9;

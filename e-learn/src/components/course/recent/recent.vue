@@ -73,7 +73,7 @@ export default {
 .instructor__image {
   width: 50px;
   height: 50px;
-  margin-right: 8px;
+  margin-right: 16px;
 }
 
 .instructor {
