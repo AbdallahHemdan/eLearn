@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import { isLoggedIn } from './../utilities/auth';
+import { isLoggedIn } from './../utilities/auth';
 
 Vue.use(VueRouter);
 
@@ -50,7 +50,7 @@ const routes = [
   {
     path: '/users',
     name: 'Manage Users',
-    component: () => import(/* webpackChunkName: "manage users" */ '@/views/manage-users.vue')
+    component: () => import(/* webpackChunkName: "manage users" */ '@/views/manage-users.vue'),
   },
   {
     path: '/course/:id',
@@ -69,7 +69,7 @@ const routes = [
     path: '/courses',
     name: 'Courses',
     component: () => import('@/views/courses.vue'),
-  }
+  },
 ];
 
 const router = new VueRouter({
@@ -78,22 +78,28 @@ const router = new VueRouter({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   let path = '';
-//   if (to.name == 'Login' && isLoggedIn()) {
-//     path = '/';
-//   } else if (to.name == 'Signup' && isLoggedIn()) {
-//     path = '/';
-//   } else if (
-//     to.name != 'Login' &&
-//     to.name != 'Signup' &&
-//     to.name != 'ForgetPassword' &&
-//     !isLoggedIn()
-//   ) {
-//     path = '/login';
-//   }
-
-//   next({ path });
-// });
+router.beforeEach((to, from, next) => {
+  if (to.name == 'Login' && isLoggedIn()) {
+    next({
+      path: '/',
+    });
+  } else if (to.name == 'SingUp' && isLoggedIn()) {
+    next({
+      path: '/',
+    });
+  } else if (
+    to.name != 'Login' &&
+    to.name != 'SingUp' &&
+    to.name != 'Forgot' &&
+    to.name != 'Reset' &&
+    !isLoggedIn()
+  ) {
+    next({
+      path: '/login',
+    });
+  } else {
+    next();
+  }
+});
 
 export default router;
