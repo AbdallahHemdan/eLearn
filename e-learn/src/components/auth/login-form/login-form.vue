@@ -80,12 +80,10 @@ export default {
       axios
         .post(`${base}/login`, this.payload)
         .then(({ data }) => {
-          console.log(data);
           setAccessToken(data.token);
           setUserData(data.userData);
 
-          // if remember is set to true, set the user token in local storage
-          // in success, redirect the use to home page
+          window.location = '/';
         })
         .catch(error => {
           // if error, set the error message to the received error message

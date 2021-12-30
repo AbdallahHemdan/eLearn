@@ -102,6 +102,7 @@
 <script>
 import axios from 'axios';
 import { base } from '@/utilities/api';
+import { setAccessToken, setUserData } from '@/utilities/auth';
 
 export default {
   name: 'SignupForm',
@@ -155,11 +156,11 @@ export default {
             'Access-Control-Allow-Origin': '*',
           },
         })
-        .then(response => {
-          console.log(response);
-
+        .then(({ data }) => {
           // if remember is set to true, set the user token in local storage
           // in success, redirect the use to home page
+          setAccessToken(data.token);
+          setUserData(data.userData);
           window.location = '/';
         })
         .catch(error => {
