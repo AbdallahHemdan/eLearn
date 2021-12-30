@@ -25,6 +25,7 @@
         </div>
       </div>
     </div>
+    <posts />
   </div>
 </template>
 
@@ -35,6 +36,9 @@ export default {
     return {
       question: '',
     };
+  },
+  components: {
+    posts: () => import('@/components/course/posts/posts.vue'),
   },
   methods: {
     openModal() {
