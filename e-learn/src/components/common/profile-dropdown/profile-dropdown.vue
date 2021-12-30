@@ -31,14 +31,13 @@
 </template>
 
 <script>
-import { getUserInfo } from '@/utilities/user';
-import { clearLocalStorage } from '@/utilities/auth';
+import { clearLocalStorage, getUserData } from '@/utilities/auth';
 
 export default {
   name: 'ProfileDropdown',
   data: function () {
     return {
-      userInfo: '',
+      userInfo: {},
     };
   },
   methods: {
@@ -46,7 +45,7 @@ export default {
       clearLocalStorage();
     },
     setUserInfo() {
-      this.userInfo = getUserInfo();
+      this.userInfo = getUserData();
     },
   },
   mounted() {

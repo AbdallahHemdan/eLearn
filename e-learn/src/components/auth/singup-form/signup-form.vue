@@ -157,10 +157,9 @@ export default {
           },
         })
         .then(({ data }) => {
-          // if remember is set to true, set the user token in local storage
-          // in success, redirect the use to home page
           setAccessToken(data.token);
           setUserData(data.userData);
+
           window.location = '/';
         })
         .catch(error => {
