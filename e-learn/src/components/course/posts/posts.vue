@@ -67,6 +67,7 @@
 <script>
 import axios from 'axios';
 import { base } from '@/utilities/api';
+import { getAccessToken } from '@/utilities/auth';
 
 export default {
   name: 'Posts',
@@ -118,7 +119,11 @@ export default {
   methods: {
     addComment() {
       axios
-        .post(`${base}/courses/${'1'}/answers`, this.payload)
+        .post(`${base}/courses/${'1'}/answers`, this.payload, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
         .then(({ data }) => {
           console.log('data', data);
           this.newComment = '';
