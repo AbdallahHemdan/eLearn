@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="qa__wrapper">
     <div class="new-question">
       <div class="question">
         <img src="@/assets/svgs/avatar.svg" alt="user image" class="user__image" />
@@ -30,12 +30,24 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { getAccessToken } from '@/utilities/auth';
+
 export default {
   name: 'QA',
   data() {
     return {
       question: '',
     };
+  },
+  computed: {
+    payload() {
+      return {
+        question: this.question,
+        date: new Date().toISOString().split('T')[0],
+        courserId: '1',
+      };
+    },
   },
   components: {
     posts: () => import('@/components/course/posts/posts.vue'),
@@ -44,17 +56,25 @@ export default {
     openModal() {
       console.log('Open Modal');
     },
+    post() {
+      axios.post(`${base}/questions`, this.payload, {
+        headers: {
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+      });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .new-question {
-  padding: 8px 24px;
+  padding: 24px;
   border-radius: 10px;
   border: 1px solid rgba(108, 122, 137, 0.25);
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
 }
 
 .user__image {

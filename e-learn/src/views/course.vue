@@ -66,6 +66,8 @@ export default {
       isQA: false,
       instructorName: 'John Doe',
       instructorTitle: 'Englist Instructor at AUC',
+      userInfo: {},
+      userImage: '',
     };
   },
   methods: {
@@ -75,10 +77,17 @@ export default {
     setToActivities() {
       this.isQA = false;
     },
+    setUserInfo() {
+      // this.userInfo = getUserData();
+      this.userImage = `https://avatars.dicebear.com/api/initials/${'hemdan'}.svg?background=%234f46e5`;
+    },
   },
   components: {
     QA: () => import('@/components/course/qa/qa.vue'),
     Activities: () => import('@/components/course/activities/activities.vue'),
+  },
+  mounted() {
+    this.setUserInfo();
   },
 };
 </script>
@@ -109,6 +118,7 @@ export default {
   display: flex;
   justify-content: left;
   align-items: center;
+  padding: 8px 24px;
 }
 
 .dummy-title {
