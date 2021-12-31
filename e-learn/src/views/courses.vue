@@ -16,32 +16,25 @@
         <create-course id="myModal" :instructorName="userInfo.username" />
       </div>
     </div>
-    <div>
-      <course-card
-        v-for="(course, index) in courses"
-        :key="index"
-        :course="course"
-      />
-    </div>
+    <course-card v-for="(course, index) in courses" :key="index" :course="course" />
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import { base } from "@/utilities/api";
-import { getUserInfo } from "@/utilities/user";
-import { getAccessToken } from "@/utilities/auth";
+import axios from 'axios';
+import { base } from '@/utilities/api';
+import { getUserInfo } from '@/utilities/user';
+import { getAccessToken } from '@/utilities/auth';
 
 export default {
   components: {
-    CourseCard: () => import("@/components/course/course-card/course-card.vue"),
-    CreateCourse: () =>
-      import("@/components/course/create-course/create-course.vue"),
+    CourseCard: () => import('@/components/course/course-card/course-card.vue'),
+    CreateCourse: () => import('@/components/course/create-course/create-course.vue'),
   },
   data() {
     return {
       courses: [],
-      userInfo: "",
+      userInfo: '',
     };
   },
   methods: {
@@ -52,10 +45,10 @@ export default {
             Authorization: `Bearer ${getAccessToken()}`,
           },
         })
-        .then((response) => {
+        .then(response => {
           this.courses = response.data;
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },

@@ -1,52 +1,56 @@
 <template>
-  <div class="course card mb-3">
-    <div class="row g-0">
-      <div class="col-md-2">
-        <img
-          src="http://source.unsplash.com/FHnnjk1Yj7Y"
-          class="img-fluid rounded-start course__img"
-          alt="course-img"
-        />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{ course.name }}</h5>
-          <p class="card-text">
-            {{ course.syllabus }}
-          </p>
-          <p class="card-text">
-            <small class="text-muted">{{ course.instructor }}</small>
-          </p>
+  <div class="course">
+    <div class="course__img">
+      <img src="https://picsum.photos/200/300" alt="course image" />
+    </div>
+
+    <div class="course__data">
+      <div class="course__header">
+        <div class="course__info">
+          <div class="course__title">{{ course.name }}</div>
+          <div class="course__date">Created at {{ course.date }}</div>
+        </div>
+
+        <div class="course__description">
+          {{ course.syllabus }}
         </div>
       </div>
-      <div class="col-md-2">
-        <button
-          class="btn btn-block course__enroll-btn"
-          @click.prevent="enroll(course.courseId)"
-          v-if="userInfo.type == 'learner' && !course.isEnrolled"
-        >
-          Enroll
-        </button>
-        <router-link :to="`/course/${course.courseId}`">
+
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="course__instructor instructor__name">
+          {{ course.instructor }}
+        </div>
+
+        <div class="course__action">
           <button
-            class="btn btn-block course__view-btn"
-            v-if="userInfo.type == 'learner' && course.isEnrolled"
+            class="btn btn-outline-secondary course__btn"
+            @click.prevent="enroll(course.courseId)"
+            v-if="userInfo.type == 'learner' && !course.isEnrolled"
           >
-            View
+            Enroll
           </button>
-        </router-link>
+
+          <router-link :to="`/course/${course.courseId}`">
+            <button
+              class="btn btn-outline-secondary course__btn"
+              v-if="(userInfo.type == 'learner' && course.isEnrolled) || true"
+            >
+              View
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import { base } from "@/utilities/api";
-import { getUserInfo } from "@/utilities/user";
+import axios from 'axios';
+import { base } from '@/utilities/api';
+import { getUserInfo } from '@/utilities/user';
 
 export default {
-  name: "CourseCard",
+  name: 'CourseCard',
   props: {
     course: {
       type: Object,
@@ -55,7 +59,7 @@ export default {
   },
   data() {
     return {
-      userInfo: "",
+      userInfo: '',
     };
   },
   mounted() {
@@ -71,10 +75,10 @@ export default {
           username: this.userInfo.username,
           courseId: courseID,
         })
-        .then((response) => {
+        .then(response => {
           console.log(response);
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
@@ -84,34 +88,67 @@ export default {
 
 <style lang="scss" scoped>
 .course {
-  height: 156px;
-  border: 1px solid $lighter-gray;
-  margin: 5px 0;
+  padding: 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(108, 122, 137, 0.25);
+  display: flex;
+
   &__img {
-    margin: 10px;
-    max-height: 180px;
-    max-width: 180px;
+    margin-right: 16px;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+
+    & > img {
+      max-height: 180px;
+      max-width: 180px;
+    }
   }
-  &__enroll-btn {
-    padding: 10px 20px;
-    background-color: $main-color;
-    color: $white;
-    margin-top: 60px;
+
+  &__title {
+    font-size: 24px;
+  }
+
+  &__date {
+    font-size: 12px;
+    color: gray;
+  }
+
+  &__info {
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    color: darkslategray;
+    margin-bottom: 8px;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__btn {
+    color: $main-color;
+    border-color: $main-color;
+    width: -webkit-fill-available;
 
     &:hover {
       background-color: $sub-color;
+      color: $white;
     }
   }
+}
 
-  &__view-btn {
-    padding: 10px 20px;
-    background-color: $light-gray;
-    color: $black;
-    margin-top: 60px;
-
-    &:hover {
-      background-color: $lighter-gray;
-    }
-  }
+.instructor__name {
+  font-weight: 600;
+  color: $main-color;
 }
 </style>
