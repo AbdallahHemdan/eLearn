@@ -133,8 +133,11 @@ export default {
         )
         .then((response) => {
           console.log(response);
-          // TODO: Update the list without extra requests
-          
+          let updatedUserIdx = array1.findIndex(
+            (user) => user.username == username
+          );
+          if (updatedUserIdx != -1)
+            this.users[updatedUserIdx].type = "instructor";
         })
         .catch((error) => {
           console.log(error);
