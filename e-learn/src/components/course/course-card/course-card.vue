@@ -23,14 +23,14 @@
         <button
           class="btn btn-block course__enroll-btn"
           @click.prevent="enroll(course.courseId)"
-          v-if="userInfo.type == 'learner' && !course.isEnrolled"
+          v-if="userInfo.type != 'instructor' && !course.isEnrolled"
         >
           Enroll
         </button>
         <router-link :to="`/course/${course.courseId}`">
           <button
             class="btn btn-block course__view-btn"
-            v-if="userInfo.type == 'learner' && course.isEnrolled"
+            v-if="userInfo.type != 'instructor' && course.isEnrolled"
           >
             View
           </button>
