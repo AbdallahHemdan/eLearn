@@ -23,6 +23,14 @@
         />
         Profile
       </a>
+      <a class="dropdown-item" :href="`/users`" v-if="userInfo.type == 'admin'">
+        <img
+          src="@/assets/nav/users.png"
+          alt="isers icon"
+          class="profile-options__icon"
+        />
+        Manage Users
+      </a>
 
       <div class="logout">
         <a class="dropdown-item" href="/login" @click="logout">

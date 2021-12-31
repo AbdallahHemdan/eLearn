@@ -16,7 +16,11 @@
       <tbody class="table__body">
         <tr v-for="(user, index) in users" :key="index" class="table__row user">
           <td>
-            <img src="@/assets/svgs/avatar.svg" alt="" class="user__img" />
+            <img
+              :src="`https://avatars.dicebear.com/api/initials/${user.username}.svg?background=%234f46e5`"
+              alt=""
+              class="user__img"
+            />
             {{ user.username }}
           </td>
           <td>{{ user.type }}</td>
@@ -133,6 +137,7 @@ export default {
           width: 30px;
           height: 30px;
           margin: 0 5px;
+          border-radius: 30px;
         }
 
         &__upgrade-btn {
