@@ -70,6 +70,11 @@ const routes = [
     name: 'Courses',
     component: () => import('@/views/courses.vue'),
   },
+  {
+    path: '/my-courses',
+    name: 'MyCourses',
+    component: () => import('@/views/my-courses.vue'),
+  },
 ];
 
 const router = new VueRouter({

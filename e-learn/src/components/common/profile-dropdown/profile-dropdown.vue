@@ -15,14 +15,22 @@
       class="dropdown-menu dropdown-menu-end right-dropdown"
       aria-labelledby="dropdownMenuButton"
     >
-      <a class="dropdown-item" :href="`/profile/${userInfo.id}`">
-        <img :src="userImage" alt="avatar image" class="profile-options__icon" />
+      <a class="dropdown-item" :href="`/settings`">
+        <img
+          :src="userImage"
+          alt="avatar image"
+          class="profile-options__icon"
+        />
         Profile
       </a>
 
       <div class="logout">
         <a class="dropdown-item" href="/login" @click="logout">
-          <img src="@/assets/nav/logout.png" alt="logout icon" class="profile-options__icon" />
+          <img
+            src="@/assets/nav/logout.png"
+            alt="logout icon"
+            class="profile-options__icon"
+          />
           Log Out
         </a>
       </div>
@@ -31,14 +39,14 @@
 </template>
 
 <script>
-import { clearLocalStorage, getUserData } from '@/utilities/auth';
+import { clearLocalStorage, getUserData } from "@/utilities/auth";
 
 export default {
-  name: 'ProfileDropdown',
+  name: "ProfileDropdown",
   data: function () {
     return {
       userInfo: {},
-      userImage: '',
+      userImage: "",
     };
   },
   methods: {
@@ -47,7 +55,7 @@ export default {
     },
     setUserInfo() {
       this.userInfo = getUserData();
-      this.userImage = `https://avatars.dicebear.com/api/initials/${this.userInfo.firstName}.svg?background=%234f46e5`
+      this.userImage = `https://avatars.dicebear.com/api/initials/${this.userInfo.firstName}.svg?background=%234f46e5`;
     },
   },
   mounted() {
@@ -66,12 +74,12 @@ export default {
   display: inline-block;
   margin-left: 0.255em;
   vertical-align: 0.255em;
-  content: '';
+  content: "";
   border-top: 0.3em solid $main-color;
   border-right: 0.3em solid transparent;
   border-bottom: 0;
   border-left: 0.3em solid transparent;
 }
 
-@import '@/components/common/navbar/navbar.scss';
+@import "@/components/common/navbar/navbar.scss";
 </style>
