@@ -17,8 +17,9 @@
         <div class="col left-col">
           <div class="dummy-title">Meet our instructor</div>
           <div class="sub-dummy-title">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum sit molestiae rerum sequi
-            adipisci necessitatibus aspernatur officia maxime amet neque?
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum sit
+            molestiae rerum sequi adipisci necessitatibus aspernatur officia
+            maxime amet neque?
           </div>
         </div>
         <div class="col instructor">
@@ -37,17 +38,24 @@
 
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link" :class="{ active: !this.isQA }" @click="setToActivities">Activities</a>
+        <a
+          class="nav-link"
+          :class="{ active: !this.isQA }"
+          @click="setToActivities"
+          >Activities</a
+        >
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" :class="{ active: this.isQA }" @click="setToQA">Q & A</a>
+        <a class="nav-link" :class="{ active: this.isQA }" @click="setToQA"
+          >Q & A</a
+        >
       </li>
     </ul>
 
     <div class="mt-4">
       <QA v-if="isQA" />
-      <Activities v-else />
+      <Activities v-else :courseID="courseID" />
     </div>
 
     <hr class="featurette-divider" />
@@ -56,18 +64,19 @@
 
 <script>
 export default {
-  name: 'Course',
+  name: "Course",
   data() {
     return {
-      name: 'online education',
+      name: "online education",
       description: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
           Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat
           commodo.`,
       isQA: false,
-      instructorName: 'John Doe',
-      instructorTitle: 'Englist Instructor at AUC',
+      instructorName: "John Doe",
+      instructorTitle: "Englist Instructor at AUC",
       userInfo: {},
-      userImage: '',
+      userImage: "",
+      courseID: null,
     };
   },
   methods: {
@@ -79,15 +88,16 @@ export default {
     },
     setUserInfo() {
       // this.userInfo = getUserData();
-      this.userImage = `https://avatars.dicebear.com/api/initials/${'hemdan'}.svg?background=%234f46e5`;
+      this.userImage = `https://avatars.dicebear.com/api/initials/${"hemdan"}.svg?background=%234f46e5`;
     },
   },
   components: {
-    QA: () => import('@/components/course/qa/qa.vue'),
-    Activities: () => import('@/components/course/activities/activities.vue'),
+    QA: () => import("@/components/course/qa/qa.vue"),
+    Activities: () => import("@/components/course/activities/activities.vue"),
   },
   mounted() {
     this.setUserInfo();
+    this.courseID = this.$route.params.id;
   },
 };
 </script>
