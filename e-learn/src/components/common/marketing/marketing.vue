@@ -1,71 +1,37 @@
 <template>
   <div class="container marketing">
-    <!-- Three columns of text below the carousel -->
+    <!-- Three columns of text below the hero -->
     <div class="row">
       <div class="col-lg-4">
-        <svg
-          class="bd-placeholder-img rounded-circle"
-          width="140"
-          height="140"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 140x140"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#777" />
-          <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-        </svg>
+        <img src="./../../../assets/values/1.jpg" alt="Rayan B. photo" class="mb-4" />
 
-        <h2>Heading</h2>
+        <h2>Teach your way</h2>
+        <div class="separator"></div>
         <p>
-          Some representative placeholder content for the three columns of text below the carousel.
-          This is the first column.
+          “Publish the course you want, in the way you want, and always have of control your own
+          content.”
         </p>
       </div>
-      <div class="col-lg-4">
-        <svg
-          class="bd-placeholder-img rounded-circle"
-          width="140"
-          height="140"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 140x140"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#777" />
-          <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-        </svg>
 
-        <h2>Heading</h2>
+      <div class="col-lg-4">
+        <img src="./../../../assets/values/2.jpg" alt="Paulina M. photo" class="mb-4" />
+
+        <h2>Inspire learners</h2>
+        <div class="separator"></div>
         <p>
-          Another exciting bit of representative placeholder content. This time, we've moved on to
-          the second column.
+          “Teach what you know and help learners explore their interests, gain new skills, and
+          advance their careers.”
         </p>
       </div>
-      <div class="col-lg-4">
-        <svg
-          class="bd-placeholder-img rounded-circle"
-          width="140"
-          height="140"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 140x140"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#777" />
-          <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-        </svg>
 
-        <h2>Heading</h2>
+      <div class="col-lg-4">
+        <img src="./../../../assets/values/3.jpg" alt="Tristen A. photo" class="mb-4" />
+
+        <h2>Get rewarded</h2>
+        <div class="separator"></div>
         <p>
-          Another exciting bit of representative placeholder content. This time, we've moved on to
-          the second column.
+          "Expand your professional network, build your expertise, and earn money on each paid
+          enrollment.”
         </p>
       </div>
     </div>
@@ -123,20 +89,7 @@
         </p>
       </div>
       <div class="col-md-5">
-        <svg
-          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-          width="500"
-          height="500"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" />
-          <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
+        <img src="./../../../assets/demo/1.svg" alt="demo image" class="demo" />
       </div>
     </div>
 
@@ -153,20 +106,7 @@
         </p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg
-          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-          width="500"
-          height="500"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" />
-          <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
+        <img src="./../../../assets/demo/2.svg" alt="demo image" class="demo" />
       </div>
     </div>
 
@@ -184,20 +124,7 @@
         </p>
       </div>
       <div class="col-md-5">
-        <svg
-          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-          width="500"
-          height="500"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="Placeholder: 500x500"
-          preserveAspectRatio="xMidYMid slice"
-          focusable="false"
-        >
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee" />
-          <text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
+        <img src="./../../../assets/demo/3.svg" alt="demo image" class="demo" />
       </div>
     </div>
 
@@ -208,6 +135,9 @@
 <script>
 export default {
   name: 'Marketing',
+  date() {
+    return {};
+  },
   components: {
     'recent-course': () => import('@/components/course/recent/recent.vue'),
   },
@@ -215,7 +145,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './../carousel/carousel.scss';
+@import './../hero/hero.scss';
 
 .recent__title {
   font-size: 35px;
@@ -226,5 +156,19 @@ export default {
 .recent__sub-title {
   color: gray;
   margin-bottom: 24px;
+}
+
+.separator {
+  background-color: $main-color;
+  display: inline-block;
+  height: 2px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 69px;
+}
+
+.demo {
+  width: 100%;
+  height: 100%;
 }
 </style>
