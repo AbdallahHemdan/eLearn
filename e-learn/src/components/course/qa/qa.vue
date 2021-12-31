@@ -2,7 +2,11 @@
   <div class="qa__wrapper">
     <div class="new-question">
       <div class="question">
-        <img src="@/assets/svgs/avatar.svg" alt="user image" class="user__image" />
+        <img
+          src="@/assets/svgs/avatar.svg"
+          alt="user image"
+          class="user__image"
+        />
 
         <div class="question__content">
           <textarea
@@ -25,54 +29,60 @@
         </div>
       </div>
     </div>
-    <posts />
+    <posts :courseID="courseID" />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
-import { getAccessToken } from '@/utilities/auth';
+import axios from "axios";
+import { base } from "@/utilities/api";
+import { getAccessToken } from "@/utilities/auth";
 
 export default {
-  name: 'QA',
+  name: "QA",
+  props: {
+    courseID: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
-      question: '',
+      question: "",
     };
   },
   computed: {
     payload() {
       return {
         question: this.question,
-        date: new Date().toISOString().split('T')[0],
-        courserId: '1',
+        date: new Date().toISOString().split("T")[0],
+        courserId: "1",
       };
     },
   },
   components: {
-    posts: () => import('@/components/course/posts/posts.vue'),
+    posts: () => import("@/components/course/posts/posts.vue"),
   },
   methods: {
     openModal() {
-      console.log('Open Modal');
+      console.log("Open Modal");
     },
     post() {
       axios
-        .post(`${base}/courses/${'1'}/questions`, this.payload, {
+        .post(`${base}/courses/${"1"}/questions`, this.payload, {
           headers: {
             Authorization: `Bearer ${getAccessToken()}`,
           },
         })
         .then(({ data }) => {
           console.log(data);
-          this.newComment = '';
+          this.newComment = "";
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
 
-      this.question = '';
+      this.question = "";
     },
   },
 };

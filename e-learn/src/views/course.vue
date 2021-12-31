@@ -4,10 +4,10 @@
       <div class="course__header">
         <div class="header__titles">
           <h1 class="header__main-title display-4">Boost your skills in</h1>
-          <h1 class="header__sub-title display-4">{{ name }}</h1>
+          <h1 class="header__sub-title display-4">{{ courseInfo.name }}</h1>
         </div>
         <p class="lead">
-          {{ description }}
+          {{ courseInfo.syllabus }}
         </p>
       </div>
     </div>
@@ -16,11 +16,6 @@
       <div class="row">
         <div class="col left-col">
           <div class="dummy-title">Meet our instructor</div>
-          <div class="sub-dummy-title">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum sit
-            molestiae rerum sequi adipisci necessitatibus aspernatur officia
-            maxime amet neque?
-          </div>
         </div>
         <div class="col instructor">
           <img
@@ -29,8 +24,7 @@
             class="instructor__image"
           />
           <div class="instructor__info">
-            <div class="instructor__name">{{ instructorName }}</div>
-            <div class="instructor__title">{{ instructorTitle }}</div>
+            <div class="instructor__name">{{ courseInfo.instructorName }}</div>
           </div>
         </div>
       </div>
@@ -54,7 +48,7 @@
     </ul>
 
     <div class="mt-4">
-      <QA v-if="isQA" />
+      <QA v-if="isQA" :courseID="courseID" />
       <Activities v-else :courseID="courseID" />
     </div>
 
@@ -63,6 +57,10 @@
 </template>
 
 <script>
+import axios from "axios";
+import { base } from "@/utilities/api";
+import { getAccessToken } from "@/utilities/auth";
+
 export default {
   name: "Course",
   data() {
@@ -77,6 +75,7 @@ export default {
       userInfo: {},
       userImage: "",
       courseID: null,
+      courseInfo: null,
     };
   },
   methods: {
@@ -90,6 +89,20 @@ export default {
       // this.userInfo = getUserData();
       this.userImage = `https://avatars.dicebear.com/api/initials/${"hemdan"}.svg?background=%234f46e5`;
     },
+    getCourseInfo() {
+      axios
+        .get(`${base}/courses/${this.courseID}`, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
+        .then((response) => {
+          this.courseInfo = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   components: {
     QA: () => import("@/components/course/qa/qa.vue"),
@@ -98,6 +111,11 @@ export default {
   mounted() {
     this.setUserInfo();
     this.courseID = this.$route.params.id;
+    // this.getCourseInfo();
+  },
+  created() {
+    this.courseID = this.$route.params.id;
+    this.getCourseInfo();
   },
 };
 </script>
