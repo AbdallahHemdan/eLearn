@@ -50,6 +50,7 @@
           <button
             type="button"
             class="btn btn-secondary"
+            id="close"
             data-dismiss="modal"
             @click="clearData"
           >
@@ -106,6 +107,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.clearData();
+          document.getElementById("close").click();
         })
         .catch((error) => {
           console.log(error);

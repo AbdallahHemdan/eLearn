@@ -35,7 +35,7 @@ import { getAccessToken } from "@/utilities/auth";
 export default {
   components: {
     CourseCard: () => import("@/components/course/course-card/course-card.vue"),
-    CreateCoursePopup: () =>
+    CreateCourse: () =>
       import("@/components/course/create-course/create-course.vue"),
   },
   data() {
@@ -53,28 +53,10 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           this.courses = response.data;
         })
         .catch((error) => {
           console.log(error);
-          // TO be removed after integration with backend
-          this.courses = [
-            {
-              courseName: "Course1",
-              courseId: 13,
-              isEnrolled: true,
-              instructor: "John Doe",
-              syllabus: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat commodo.`,
-            },
-            {
-              courseName: "Course2",
-              courseId: 14,
-              isEnrolled: false,
-              instructor: "John Doe",
-              syllabus: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat commodo.`,
-            },
-          ];
         });
     },
     setUserInfo() {

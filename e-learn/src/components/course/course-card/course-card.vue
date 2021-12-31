@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">{{ course.courseName }}</h5>
+          <h5 class="card-title">{{ course.name }}</h5>
           <p class="card-text">
             {{ course.syllabus }}
           </p>
