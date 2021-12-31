@@ -49,29 +49,29 @@
         <recent-course
           tag-color="#433ca9"
           tag-bg-color="#e0e7ff"
-          title="Boost your conversation rate"
-          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum necessitatibus porro,"
-          instructor-name="Jon Doe"
+          :title="courses[0].name"
+          :description="courses[0].syllabus"
+          :instructor-name="courses[0].instructorName"
           instructor-image="svgs/avatar.svg"
-          course-date="Mar 16, 2021"
+          :course-date="courses[0].date"
         />
         <recent-course
           tag-color="#a22155"
           tag-bg-color="#fce7f3"
-          title="Boost your conversation rate"
-          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum necessitatibus porro,"
-          instructor-name="Jon Doe"
+          :title="courses[1].name"
+          :description="courses[1].syllabus"
+          :instructor-name="courses[1].instructorName"
           instructor-image="svgs/avatar.svg"
-          course-date="Mar 16, 2021"
+          :course-date="courses[1].date"
         />
         <recent-course
           tag-color="#086047"
           tag-bg-color="#d1fae5"
-          title="Boost your conversation rate"
-          description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat laborum necessitatibus porro,"
-          instructor-name="Jon Doe"
+          :title="courses[2].name"
+          :description="courses[2].syllabus"
+          :instructor-name="courses[2].instructorName"
           instructor-image="svgs/avatar.svg"
-          course-date="Mar 16, 2021"
+          :course-date="courses[2].date"
         />
       </div>
     </div>
@@ -133,13 +133,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { base } from '@/utilities/api';
+
 export default {
   name: 'Marketing',
   date() {
-    return {};
+    return {
+      courses: [],
+    };
   },
   components: {
     'recent-course': () => import('@/components/course/recent/recent.vue'),
+  },
+  methods: {
+    getTopCourses() {
+      axios
+        .get(`${base}/courses/top-courses`)
+        .then(({ data }) => {
+          this.courses = data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+  },
+  mounted() {
+    this.getTopCourses();
   },
 };
 </script>

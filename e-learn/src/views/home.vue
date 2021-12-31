@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <hero />
+
     <aside class="banner-thin section--light-blue padding-top-md padding-bottom-md">
       <div class="container">
         <div class="row">
@@ -19,6 +20,7 @@
         </div>
       </div>
     </aside>
+
     <marketing />
   </div>
 </template>
