@@ -2,7 +2,11 @@
   <div class="posts">
     <div class="post" v-for="(post, index) in posts" :key="index">
       <div class="post__header">
-        <img :src="post.userImage" class="user__img" alt="user photo" />
+        <img
+          :src="`https://avatars.dicebear.com/api/initials/${post.username}.svg?background=%234f46e5`"
+          class="user__img"
+          alt="user photo"
+        />
 
         <div class="user__info">
           <div class="user__name">{{ post.username }}</div>
@@ -10,13 +14,21 @@
         </div>
       </div>
 
-      <div class="post__body">{{ post.content }}</div>
+      <div class="post__body">{{ post.body }}</div>
 
       <div class="answers">
-        <div class="answer" v-for="(answer, index) in post.answers" :key="index">
+        <div
+          class="answer"
+          v-for="(answer, index) in post.answers"
+          :key="index"
+        >
           <div class="comment">
             <div class="comment__header">
-              <img :src="answer.userImage" alt="" class="comment__usr-img" />
+              <img
+                :src="`https://avatars.dicebear.com/api/initials/${answer.username}.svg?background=%234f46e5`"
+                alt=""
+                class="comment__usr-img"
+              />
 
               <div class="comment__info">
                 <div class="comment__usr-name">{{ answer.username }}</div>
@@ -26,7 +38,7 @@
             </div>
 
             <div class="comment__content">
-              {{ answer.content }}
+              {{ answer.body }}
             </div>
           </div>
         </div>
@@ -34,7 +46,11 @@
 
       <div class="post">
         <div class="post__header">
-          <img :src="post.userImage" class="comment__usr-img" alt="user photo" />
+          <img
+            :src="`https://avatars.dicebear.com/api/initials/${post.username}.svg?background=%234f46e5`"
+            class="comment__usr-img"
+            alt="user photo"
+          />
 
           <div class="comment__info">
             <div class="comment__usr-name">{{ post.username }}</div>
@@ -65,43 +81,45 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
-import { getAccessToken } from '@/utilities/auth';
+import axios from "axios";
+import { base } from "@/utilities/api";
+import { getAccessToken } from "@/utilities/auth";
 
 export default {
-  name: 'Posts',
+  name: "Posts",
+  props: {
+    courseID: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
-      newComment: '',
+      newComment: "",
       posts: [
         {
-          userImage: 'https://i.pravatar.cc/300',
-          username: 'Eduardo Benz',
-          date: 'Dec 6, 2022',
+          username: "Eduardo Benz",
+          date: "Dec 6, 2022",
           content:
-            'Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.',
+            "Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
           answers: [
             {
-              userImage: 'https://i.pravatar.cc/300',
-              username: 'Hemdan',
-              date: 'Dec 9, 2022',
+              username: "Hemdan",
+              date: "Dec 9, 2022",
               content:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.',
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.",
             },
             {
-              userImage: 'https://i.pravatar.cc/300',
-              username: 'Hemdan',
-              date: 'Dec 9, 2022',
+              username: "Hemdan",
+              date: "Dec 9, 2022",
               content:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.',
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.",
             },
             {
-              userImage: 'https://i.pravatar.cc/300',
-              username: 'Hemdan',
-              date: 'Dec 9, 2022',
+              username: "Hemdan",
+              date: "Dec 9, 2022",
               content:
-                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.',
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.",
             },
           ],
         },
@@ -112,26 +130,43 @@ export default {
     payload() {
       return {
         answer: this.newComment,
-        date: new Date().toISOString().split('T')[0],
+        date: new Date().toISOString().split("T")[0],
       };
     },
   },
   methods: {
+    getPosts() {
+      axios
+        .get(`${base}/courses/${this.courseID}/questions`, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
+        .then((response) => {
+          this.posts = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     addComment() {
       axios
-        .post(`${base}/courses/${'1'}/answers`, this.payload, {
+        .post(`${base}/courses/${"1"}/answers`, this.payload, {
           headers: {
             Authorization: `Bearer ${getAccessToken()}`,
           },
         })
         .then(({ data }) => {
-          console.log('data', data);
-          this.newComment = '';
+          console.log("data", data);
+          this.newComment = "";
         })
-        .catch(err => {
-          console.log('err', err);
+        .catch((err) => {
+          console.log("err", err);
         });
     },
+  },
+  created() {
+    this.getPosts();
   },
 };
 </script>

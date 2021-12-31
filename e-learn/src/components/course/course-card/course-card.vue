@@ -24,7 +24,7 @@
         <div class="course__action">
           <button
             class="btn btn-outline-secondary course__btn"
-            @click.prevent="enroll(course._id)"
+            @click.prevent="enroll()"
             v-if="userInfo.type != 'instructor' && !course.isEnrolled"
           >
             Enroll
@@ -69,12 +69,12 @@ export default {
     setUserInfo() {
       this.userInfo = getUserData();
     },
-    enroll(courseID) {
+    enroll() {
       axios
         .post(
-          `${base}/courses/${courseID}`,
+          `${base}/users/enrollMe`,
           {
-            email: this.userInfo.email,
+            courseId: this.course._id,
           },
           {
             headers: {
