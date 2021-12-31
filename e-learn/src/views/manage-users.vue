@@ -39,6 +39,7 @@
 <script>
 import axios from "axios";
 import { base } from "@/utilities/api";
+import { getAccessToken } from "@/utilities/auth";
 
 export default {
   data() {
@@ -49,7 +50,11 @@ export default {
   methods: {
     getAllUsers() {
       axios
-        .get(`${base}/users`)
+        .get(`${base}/users`, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
         .then((response) => {
           console.log(response);
           this.users = response.data;
@@ -115,12 +120,21 @@ export default {
     },
     upgrade(username) {
       axios
-        .put(`${base}/upgrade-user`, {
-          username: username,
-        })
+        .put(
+          `${base}/upgrade-user`,
+          {
+            username: username,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${getAccessToken()}`,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           // TODO: Update the list without extra requests
+          
         })
         .catch((error) => {
           console.log(error);

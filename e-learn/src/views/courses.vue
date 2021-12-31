@@ -17,51 +17,61 @@
       </div>
     </div>
     <div>
-      <course-card v-for="(course, index) in courses" :key="index" :course="course" />
+      <course-card
+        v-for="(course, index) in courses"
+        :key="index"
+        :course="course"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
-import { getUserInfo } from '@/utilities/user';
+import axios from "axios";
+import { base } from "@/utilities/api";
+import { getUserInfo } from "@/utilities/user";
+import { getAccessToken } from "@/utilities/auth";
 
 export default {
   components: {
-    CourseCard: () => import('@/components/course/course-card/course-card.vue'),
-    CreateCoursePopup: () => import('@/components/course/create-course/create-course.vue'),
+    CourseCard: () => import("@/components/course/course-card/course-card.vue"),
+    CreateCoursePopup: () =>
+      import("@/components/course/create-course/create-course.vue"),
   },
   data() {
     return {
       courses: [],
-      userInfo: '',
+      userInfo: "",
     };
   },
   methods: {
     getAllCourses() {
       axios
-        .get(`${base}/courses`)
-        .then(response => {
+        .get(`${base}/courses`, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
+        .then((response) => {
           console.log(response);
           this.courses = response.data;
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           // TO be removed after integration with backend
           this.courses = [
             {
-              courseName: 'Course1',
+              courseName: "Course1",
               courseId: 13,
               isEnrolled: true,
-              instructor: 'John Doe',
+              instructor: "John Doe",
               syllabus: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat commodo.`,
             },
             {
-              courseName: 'Course2',
+              courseName: "Course2",
               courseId: 14,
               isEnrolled: false,
-              instructor: 'John Doe',
+              instructor: "John Doe",
               syllabus: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat commodo.`,
             },
           ];

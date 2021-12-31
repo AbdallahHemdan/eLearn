@@ -59,7 +59,12 @@
 
       <!-- Birth Date -->
       <div class="form-floating mb-3">
-        <input type="date" class="form-control" id="birthdate" v-model="birthDate" />
+        <input
+          type="date"
+          class="form-control"
+          id="birthdate"
+          v-model="birthDate"
+        />
         <label for="birthDate" class="input-label">Birth Date</label>
       </div>
 
@@ -79,17 +84,18 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
+import axios from "axios";
+import { base } from "@/utilities/api";
+import { getAccessToken } from "@/utilities/auth";
 
 export default {
   data() {
     return {
-      username: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      birthDate: '',
+      username: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      birthDate: "",
       changed: true,
       userData: {},
     };
@@ -97,33 +103,45 @@ export default {
   methods: {
     update() {
       axios
-        .put(`${base}/user-info?username=${this.userData.username}`, this.payload)
-        .then(response => {
+        .put(
+          `${base}/user-info?username=${this.userData.username}`,
+          this.payload,
+          {
+            headers: {
+              Authorization: `Bearer ${getAccessToken()}`,
+            },
+          }
+        )
+        .then((response) => {
           console.log(response);
           this.getUserData();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     },
     getUserData() {
       axios
-        .get(`${base}/user-info?username=${this.userData.username}`)
-        .then(response => {
+        .get(`${base}/user-info?username=${this.userData.username}`, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
+        .then((response) => {
           console.log(response);
           this.userData = response.data;
           this.updateModels();
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
           // TO be removed after integration with backend
           this.userData = {
-            username: 'Eman',
-            email: 'eothman21@gmail.com',
-            firstname: 'Eman',
-            lastname: 'Othman',
-            birthdate: '2000-02-21',
-            type: 'Learner',
+            username: "Eman",
+            email: "eothman21@gmail.com",
+            firstname: "Eman",
+            lastname: "Othman",
+            birthdate: "2000-02-21",
+            type: "Learner",
           };
           this.updateModels();
         });

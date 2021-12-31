@@ -67,9 +67,7 @@
 <script>
 import axios from "axios";
 import { base } from "@/utilities/api";
-
-const getUserToken = () =>
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIzLCJ1c2VybmFtZSI6Ik1haGJvdWJBZGVsIiwiZW1haWwiOiJtYWhib3ViQWRlbEBnbWFpbC5jb20iLCJwYXNzd29yZCI6InNpb2Roc2lkc2kiLCJmaXJzdE5hbWUiOiJBaG1lZCIsImxhc3ROYW1lIjoiQWRlbCIsImJpcnRoRGF0ZSI6IjIwMTktMDItMDIiLCJjb3Vyc2VzSWRzIjpbXSwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjQwNzI2NjE5LCJleHAiOjE2NDA4MTMwMTl9.uw-tRh2k1xt5x5oqtzcYSz2aSg2u6uHqJ7IhvhWgGZk";
+import { getAccessToken } from "@/utilities/auth";
 
 export default {
   name: "CreateCoursePopup",
@@ -101,7 +99,7 @@ export default {
           },
           {
             headers: {
-              Authorization: `Bearer ${getUserToken()}`,
+              Authorization: `Bearer ${getAccessToken()}`,
             },
           }
         )
