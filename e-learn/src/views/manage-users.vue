@@ -56,75 +56,17 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           this.users = response.data;
         })
         .catch((error) => {
           console.log(error);
-          // TO be removed after integration with backend
-          this.users = [
-            {
-              username: "Eman",
-              type: "learner",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-          ];
         });
     },
     upgrade(username) {
       axios
         .put(
-          `${base}/upgrade-user`,
-          {
-            username: username,
-          },
+          `${base}/users/upgrade/${username}`,
+          {},
           {
             headers: {
               Authorization: `Bearer ${getAccessToken()}`,
@@ -133,7 +75,7 @@ export default {
         )
         .then((response) => {
           console.log(response);
-          let updatedUserIdx = array1.findIndex(
+          let updatedUserIdx = this.users.findIndex(
             (user) => user.username == username
           );
           if (updatedUserIdx != -1)
