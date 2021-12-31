@@ -86,7 +86,7 @@
 <script>
 import axios from "axios";
 import { base } from "@/utilities/api";
-import { getAccessToken } from "@/utilities/auth";
+import { getAccessToken, getUserData } from "@/utilities/auth";
 
 export default {
   data() {
@@ -103,15 +103,11 @@ export default {
   methods: {
     update() {
       axios
-        .put(
-          `${base}/user-info?username=${this.userData.username}`,
-          this.payload,
-          {
-            headers: {
-              Authorization: `Bearer ${getAccessToken()}`,
-            },
-          }
-        )
+        .put(`${base}/users/_id=${getUserData()._id}`, this.payload, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
         .then((response) => {
           console.log(response);
           this.getUserData();
@@ -122,7 +118,7 @@ export default {
     },
     getUserData() {
       axios
-        .get(`${base}/user-info?username=${this.userData.username}`, {
+        .get(`${base}/users/_id=${getUserData()._id}`, {
           headers: {
             Authorization: `Bearer ${getAccessToken()}`,
           },
@@ -150,9 +146,9 @@ export default {
       // Search for object unpacking later
       this.username = this.userData.username;
       this.email = this.userData.email;
-      this.firstName = this.userData.firstname;
-      this.lastName = this.userData.lastname;
-      this.birthDate = this.userData.birthdate;
+      this.firstName = this.userData.firstName;
+      this.lastName = this.userData.lastName;
+      this.birthDate = this.userData.birthDate;
     },
   },
   created: function () {
