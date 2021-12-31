@@ -20,6 +20,7 @@
       v-for="(course, index) in courses"
       :key="index"
       :course="course"
+      @updateCourse="updateCourse"
     />
   </div>
 </template>
@@ -55,6 +56,10 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    updateCourse(id) {
+      let courseIdx = this.courses.findIndex((course) => course._id == id);
+      if (courseIdx != -1) this.courses[courseIdx].isEnrolled = true;
     },
     setUserInfo() {
       this.userInfo = getUserData();

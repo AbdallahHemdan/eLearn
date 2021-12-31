@@ -18,24 +18,22 @@
 
       <div class="d-flex justify-content-between align-items-center">
         <div class="course__instructor instructor__name">
-          {{ course.instructor }}
+          {{ course.instructorName }}
         </div>
 
         <div class="course__action">
           <button
             class="btn btn-outline-secondary course__btn"
-            @click.prevent="enroll(course.courseId)"
+            @click.prevent="enroll(course._id)"
             v-if="userInfo.type != 'instructor' && !course.isEnrolled"
           >
             Enroll
           </button>
 
-          <router-link :to="`/course/${course.courseId}`">
+          <router-link :to="`/course/${course._id}`">
             <button
               class="btn btn-outline-secondary course__btn"
-              v-if="
-                (userInfo.type != 'instructor' && course.isEnrolled) || true
-              "
+              v-if="userInfo.type != 'instructor' && course.isEnrolled"
             >
               View
             </button>
@@ -49,7 +47,7 @@
 <script>
 import axios from "axios";
 import { base } from "@/utilities/api";
-import { getUserInfo } from "@/utilities/user";
+import { getAccessToken, getUserData } from "@/utilities/auth";
 
 export default {
   name: "CourseCard",
@@ -69,16 +67,24 @@ export default {
   },
   methods: {
     setUserInfo() {
-      this.userInfo = getUserInfo();
+      this.userInfo = getUserData();
     },
     enroll(courseID) {
       axios
-        .post(`${base}/courses`, {
-          username: this.userInfo.username,
-          courseId: courseID,
-        })
+        .post(
+          `${base}/courses/${courseID}`,
+          {
+            email: this.userInfo.email,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${getAccessToken()}`,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
+          this.$emit("updateCourse", this.course._id);
         })
         .catch((error) => {
           console.log(error);
