@@ -96,7 +96,6 @@ export default {
       lastName: "",
       email: "",
       birthDate: "",
-      changed: true,
       userData: {},
     };
   },
@@ -124,26 +123,14 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           this.userData = response.data;
           this.updateModels();
         })
         .catch((error) => {
           console.log(error);
-          // TO be removed after integration with backend
-          this.userData = {
-            username: "Eman",
-            email: "eothman21@gmail.com",
-            firstname: "Eman",
-            lastname: "Othman",
-            birthdate: "2000-02-21",
-            type: "Learner",
-          };
-          this.updateModels();
         });
     },
     updateModels() {
-      // Search for object unpacking later
       this.username = this.userData.username;
       this.email = this.userData.email;
       this.firstName = this.userData.firstName;
@@ -158,9 +145,9 @@ export default {
     isChanged: function () {
       if (this.userData.email !== this.email) return true;
       if (this.userData.username !== this.username) return true;
-      if (this.userData.lastname !== this.lastName) return true;
-      if (this.userData.firstname !== this.firstName) return true;
-      if (this.userData.birthdate !== this.birthDate) return true;
+      if (this.userData.lastName !== this.lastName) return true;
+      if (this.userData.firstName !== this.firstName) return true;
+      if (this.userData.birthDate !== this.birthDate) return true;
       return false;
     },
     payload() {

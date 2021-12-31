@@ -23,8 +23,7 @@
 <script>
 import axios from 'axios';
 import { base } from '@/utilities/api';
-import { getUserInfo } from '@/utilities/user';
-import { getAccessToken } from '@/utilities/auth';
+import { getAccessToken, getUserData } from '@/utilities/auth';
 
 export default {
   components: {
@@ -53,7 +52,7 @@ export default {
         });
     },
     setUserInfo() {
-      this.userInfo = getUserInfo();
+      this.userInfo = getUserData();
     },
   },
   created: function () {

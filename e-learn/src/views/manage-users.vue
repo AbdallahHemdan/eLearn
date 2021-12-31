@@ -16,7 +16,11 @@
       <tbody class="table__body">
         <tr v-for="(user, index) in users" :key="index" class="table__row user">
           <td>
-            <img src="@/assets/svgs/avatar.svg" alt="" class="user__img" />
+            <img
+              :src="`https://avatars.dicebear.com/api/initials/${user.username}.svg?background=%234f46e5`"
+              alt=""
+              class="user__img"
+            />
             {{ user.username }}
           </td>
           <td>{{ user.type }}</td>
@@ -56,75 +60,17 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           this.users = response.data;
         })
         .catch((error) => {
           console.log(error);
-          // TO be removed after integration with backend
-          this.users = [
-            {
-              username: "Eman",
-              type: "learner",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-            {
-              username: "Hemdan",
-              type: "learner",
-            },
-            {
-              username: "Adel",
-              type: "instructor",
-            },
-          ];
         });
     },
     upgrade(username) {
       axios
         .put(
-          `${base}/upgrade-user`,
-          {
-            username: username,
-          },
+          `${base}/users/upgrade/${username}`,
+          {},
           {
             headers: {
               Authorization: `Bearer ${getAccessToken()}`,
@@ -133,7 +79,7 @@ export default {
         )
         .then((response) => {
           console.log(response);
-          let updatedUserIdx = array1.findIndex(
+          let updatedUserIdx = this.users.findIndex(
             (user) => user.username == username
           );
           if (updatedUserIdx != -1)
@@ -191,6 +137,7 @@ export default {
           width: 30px;
           height: 30px;
           margin: 0 5px;
+          border-radius: 30px;
         }
 
         &__upgrade-btn {
