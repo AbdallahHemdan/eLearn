@@ -94,6 +94,7 @@ export default {
   border-radius: 10px;
   border: 1px solid rgba(108, 122, 137, 0.25);
   display: flex;
+  margin-bottom: 16px;
 
   &__img {
     margin-right: 16px;
