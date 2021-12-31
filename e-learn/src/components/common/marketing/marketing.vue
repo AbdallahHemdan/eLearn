@@ -23,7 +23,6 @@
           Some representative placeholder content for the three columns of text below the carousel.
           This is the first column.
         </p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <svg
@@ -46,7 +45,6 @@
           Another exciting bit of representative placeholder content. This time, we've moved on to
           the second column.
         </p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div>
       <div class="col-lg-4">
         <svg
@@ -69,7 +67,6 @@
           Another exciting bit of representative placeholder content. This time, we've moved on to
           the second column.
         </p>
-        <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
       </div>
     </div>
 
