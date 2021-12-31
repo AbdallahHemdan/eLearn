@@ -1,16 +1,18 @@
 <template>
   <div class="activity__header">
     <div class="instructor">
-      <img src="@/assets/svgs/avatar.svg" alt="instructor image" class="instructor__image" />
+      <img
+        :src="`https://avatars.dicebear.com/api/initials/${instructorName}.svg?background=%234f46e5`"
+        alt="instructor image"
+        class="instructor__image"
+      />
       <div class="activity">
         <div class="instructor__name">
-          <!-- {{ instructorName }} -->
-          John Doe
+          {{ instructorName }}
         </div>
 
         <div class="activity__date">
-          <!-- {{ new Date(date).toDateString() }} -->
-          {{ new Date('2021-01-01').toDateString() }}
+          {{ new Date(date).toDateString() }}
         </div>
       </div>
     </div>
@@ -18,15 +20,14 @@
     <div class="activity__title">
       <span class="title__arrow">➤ </span>
 
-      <!-- <span class="title__content">{{ title }}</span> -->
-      <span class="title__content">Introduction to developer trends 2022</span>
+      <span class="title__content">{{ title }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ActivityHeader',
+  name: "ActivityHeader",
   props: {
     title: {
       type: String,

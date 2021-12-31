@@ -49,7 +49,7 @@
 
     <div class="mt-4">
       <QA v-if="isQA" :courseID="courseID" />
-      <Activities v-else :courseID="courseID" />
+      <Activities v-else :courseID="courseID" :instructorName="courseInfo.instructorName"/>
     </div>
 
     <hr class="featurette-divider" />
