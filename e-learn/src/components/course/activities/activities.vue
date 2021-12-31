@@ -11,13 +11,29 @@
       </button>
       <add-activity id="myModal" :courseID="courseID" />
     </div>
-    <embedded-video video-url="https://www.youtube.com/embed/LOpFYMPXqE4" />
-    <embedded-pdf pdf-url="http://www.africau.edu/images/default/sample.pdf" />
+    <div v-for="(activity, index) in activities" :key="index">
+      <embedded-video
+        v-if="activity.type == 'youtube'"
+        video-url="https://www.youtube.com/embed/watch?v=JLlIAWjvHxM"
+        :title="activity.name"
+        :date="activity.createdAt"
+        :instructorName="instructorName"
+      />
+      <embedded-pdf
+        v-if="activity.type == 'pdf'"
+        :video-url="activity.link"
+        :title="activity.name"
+        :date="activity.createdAt"
+        :instructorName="instructorName"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import { getUserData } from "@/utilities/auth";
+import axios from "axios";
+import { base } from "@/utilities/api";
+import { getAccessToken, getUserData } from "@/utilities/auth";
 
 export default {
   props: {
@@ -25,10 +41,15 @@ export default {
       type: String,
       required: true,
     },
+    instructorName: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
       userInfo: "",
+      activities: [],
     };
   },
   components: {
@@ -41,6 +62,23 @@ export default {
   },
   created() {
     this.userInfo = getUserData();
+    this.getActivities();
+  },
+  methods: {
+    getActivities() {
+      axios
+        .get(`${base}/activities/${this.courseID}`, {
+          headers: {
+            Authorization: `Bearer ${getAccessToken()}`,
+          },
+        })
+        .then((response) => {
+          this.activities = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 };
 </script>

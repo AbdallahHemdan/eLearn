@@ -1,13 +1,22 @@
 <template>
   <div class="pdf">
-    <activity-header />
-    <iframe class="embeddedPdf" :src="pdfUrl" title="Pdf viewer" allowfullscreen></iframe>
+    <activity-header
+      :title="title"
+      :date="date"
+      :instructorName="instructorName"
+    />
+    <iframe
+      class="embeddedPdf"
+      :src="pdfUrl"
+      title="Pdf viewer"
+      allowfullscreen
+    ></iframe>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'EmbeddedPdf',
+  name: "EmbeddedPdf",
   props: {
     pdfUrl: {
       type: String,
@@ -27,7 +36,8 @@ export default {
     },
   },
   components: {
-    ActivityHeader: () => import('@/components/course/activity-header/activity-header.vue'),
+    ActivityHeader: () =>
+      import("@/components/course/activity-header/activity-header.vue"),
   },
 };
 </script>

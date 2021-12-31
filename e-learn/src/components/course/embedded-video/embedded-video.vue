@@ -1,6 +1,10 @@
 <template>
   <div class="video">
-    <activity-header />
+    <activity-header
+      :title="title"
+      :date="date"
+      :instructorName="instructorName"
+    />
 
     <iframe
       class="embeddedVideo"
@@ -15,7 +19,7 @@
 
 <script>
 export default {
-  name: 'EmbeddedVideo',
+  name: "EmbeddedVideo",
   props: {
     videoUrl: {
       type: String,
@@ -35,7 +39,8 @@ export default {
     },
   },
   components: {
-    ActivityHeader: () => import('@/components/course/activity-header/activity-header.vue'),
+    ActivityHeader: () =>
+      import("@/components/course/activity-header/activity-header.vue"),
   },
 };
 </script>
