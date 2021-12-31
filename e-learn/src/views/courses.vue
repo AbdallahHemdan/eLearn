@@ -16,13 +16,11 @@
         <create-course id="myModal" :instructorName="userInfo.username" />
       </div>
     </div>
-    <div class="courses">
-      <course-card
-        v-for="(course, index) in courses"
-        :key="index"
-        :course="course"
-      />
-    </div>
+    <course-card
+      v-for="(course, index) in courses"
+      :key="index"
+      :course="course"
+    />
   </div>
 </template>
 
@@ -95,12 +93,9 @@ export default {
   margin: 80px auto;
   padding: 10px;
   border: solid 3px $white-smoke;
-
-  .courses {
-    max-height: 500px;
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  max-height: 500px;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>
