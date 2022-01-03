@@ -1,191 +1,201 @@
 <template>
-  <div class="course">
-    <div class="jumbotron jumbotron-fluid">
-      <div class="course__header">
-        <div class="header__titles">
-          <h1 class="header__main-title display-4">Boost your skills in</h1>
-          <h1 class="header__sub-title display-4">{{ courseInfo.name }}</h1>
+    <div class="course">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="course__header">
+                <div class="header__titles">
+                    <h1 class="header__main-title display-4">
+                        Boost your skills in
+                    </h1>
+                    <h1 class="header__sub-title display-4">
+                        {{ courseInfo.name }}
+                    </h1>
+                </div>
+                <p class="lead">
+                    {{ courseInfo.syllabus }}
+                </p>
+            </div>
         </div>
-        <p class="lead">
-          {{ courseInfo.syllabus }}
-        </p>
-      </div>
-    </div>
 
-    <div class="course__instructor">
-      <div class="row">
-        <div class="col left-col">
-          <div class="dummy-title">Meet our instructor</div>
+        <div class="course__instructor">
+            <div class="row">
+                <div class="col left-col">
+                    <div class="dummy-title">Meet our instructor</div>
+                </div>
+                <div class="col instructor">
+                    <img
+                        src="@/assets/svgs/avatar.svg"
+                        alt="the instructor image"
+                        class="instructor__image"
+                    />
+                    <div class="instructor__info">
+                        <div class="instructor__name">
+                            {{ courseInfo.instructorName }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col instructor">
-          <img
-            src="@/assets/svgs/avatar.svg"
-            alt="the instructor image"
-            class="instructor__image"
-          />
-          <div class="instructor__info">
-            <div class="instructor__name">{{ courseInfo.instructorName }}</div>
-          </div>
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    :class="{ active: !this.isQA }"
+                    @click="setToActivities"
+                    >Activities</a
+                >
+            </li>
+
+            <li class="nav-item">
+                <a
+                    class="nav-link"
+                    :class="{ active: this.isQA }"
+                    @click="setToQA"
+                    >Q & A</a
+                >
+            </li>
+        </ul>
+
+        <div class="mt-4">
+            <QA v-if="isQA" :courseID="courseID" />
+            <Activities
+                v-else
+                :courseID="courseID"
+                :instructorName="courseInfo.instructorName"
+            />
         </div>
-      </div>
+
+        <hr class="featurette-divider" />
     </div>
-
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          :class="{ active: !this.isQA }"
-          @click="setToActivities"
-          >Activities</a
-        >
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" :class="{ active: this.isQA }" @click="setToQA"
-          >Q & A</a
-        >
-      </li>
-    </ul>
-
-    <div class="mt-4">
-      <QA v-if="isQA" :courseID="courseID" />
-      <Activities v-else :courseID="courseID" :instructorName="courseInfo.instructorName"/>
-    </div>
-
-    <hr class="featurette-divider" />
-  </div>
 </template>
 
 <script>
 import axios from "axios";
 import { base } from "@/utilities/api";
-import { getAccessToken } from "@/utilities/auth";
+import { getAccessToken, getUserData } from "@/utilities/auth";
 
 export default {
-  name: "Course",
-  data() {
-    return {
-      name: "online education",
-      description: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
+    name: "Course",
+    data() {
+        return {
+            name: "online education",
+            description: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
           Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat
           commodo.`,
-      isQA: false,
-      instructorName: "John Doe",
-      instructorTitle: "Englist Instructor at AUC",
-      userInfo: {},
-      userImage: "",
-      courseID: null,
-      courseInfo: null,
-    };
-  },
-  methods: {
-    setToQA() {
-      this.isQA = true;
+            isQA: false,
+            instructorName: "John Doe",
+            instructorTitle: "Englist Instructor at AUC",
+            userInfo: {},
+            userImage: "",
+            courseID: null,
+            courseInfo: {},
+        };
     },
-    setToActivities() {
-      this.isQA = false;
+    methods: {
+        setToQA() {
+            this.isQA = true;
+        },
+        setToActivities() {
+            this.isQA = false;
+        },
+        setUserInfo() {
+            this.userInfo = getUserData();
+            this.userImage = `https://avatars.dicebear.com/api/initials/${"hemdan"}.svg?background=%234f46e5`;
+        },
+        getCourseInfo() {
+            axios
+                .get(`${base}/courses/${this.courseID}`, {
+                    headers: {
+                        Authorization: `Bearer ${getAccessToken()}`,
+                    },
+                })
+                .then((response) => {
+                    this.courseInfo = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
     },
-    setUserInfo() {
-      // this.userInfo = getUserData();
-      this.userImage = `https://avatars.dicebear.com/api/initials/${"hemdan"}.svg?background=%234f46e5`;
+    components: {
+        QA: () => import("@/components/course/qa/qa.vue"),
+        Activities: () =>
+            import("@/components/course/activities/activities.vue"),
     },
-    getCourseInfo() {
-      axios
-        .get(`${base}/courses/${this.courseID}`, {
-          headers: {
-            Authorization: `Bearer ${getAccessToken()}`,
-          },
-        })
-        .then((response) => {
-          this.courseInfo = response.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    created() {
+        this.setUserInfo();
+        this.courseID = this.$route.params.id;
+        this.getCourseInfo();
     },
-  },
-  components: {
-    QA: () => import("@/components/course/qa/qa.vue"),
-    Activities: () => import("@/components/course/activities/activities.vue"),
-  },
-  mounted() {
-    this.setUserInfo();
-    this.courseID = this.$route.params.id;
-    // this.getCourseInfo();
-  },
-  created() {
-    this.courseID = this.$route.params.id;
-    this.getCourseInfo();
-  },
 };
 </script>
 
 <style lang="scss" scoped>
 .header__titles {
-  font-size: 3.75rem;
-  line-height: 1;
-  color: rgba(17, 24, 39, 1);
-  letter-spacing: 0.025em;
-  font-weight: 800;
-  font-family: fantasy;
+    font-size: 3.75rem;
+    line-height: 1;
+    color: rgba(17, 24, 39, 1);
+    letter-spacing: 0.025em;
+    font-weight: 800;
+    font-family: fantasy;
 }
 
 .header__main-title {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .header__sub-title {
-  color: $main-color;
+    color: $main-color;
 }
 
 .jumbotron {
-  margin-bottom: $spacing-9x;
+    margin-bottom: $spacing-9x;
 }
 
 .instructor {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  padding: 8px 24px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 8px 24px;
 }
 
 .dummy-title {
-  font-size: 32px;
-  font-weight: 600;
+    font-size: 32px;
+    font-weight: 600;
 }
 
 .instructor__name {
-  font-size: 24px;
-  font-weight: 600;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .instructor__title {
-  font-weight: 600;
-  color: $main-color;
+    font-weight: 600;
+    color: $main-color;
 }
 
 .left-col,
 .right-col {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .instructor__image {
-  width: 100px;
-  height: 100px;
-  margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
 }
 
 .nav-item {
-  &:hover {
-    cursor: pointer;
-  }
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .sub-dummy-title {
-  color: $dark-gray;
+    color: $dark-gray;
 }
 
 .featurette-divider {
-  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
 }
 </style>
