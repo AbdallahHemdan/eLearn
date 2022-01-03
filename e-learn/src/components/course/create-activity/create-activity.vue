@@ -35,26 +35,25 @@
           </select>
           <div class="form-floating mb-3">
             <input
-              @input="fullInfo = 1"
               type="text"
               class="form-control"
               id="name"
               v-model="name"
             />
-            <label for="name" class="input-label">Name</label>
+            <label for="name" class="input-label">Name*</label>
           </div>
           <div class="form-floating mb-3">
             <input
-              @input="fullInfo = 1"
               type="url"
               class="form-control"
               id="url"
               v-model="url"
             />
-            <label for="url" class="input-label">Url</label>
+            <label for="url" class="input-label">Url*</label>
           </div>
-          <span class="error" v-if="!fullInfo">Please enter full info</span>
+          <span class="error" v-if="errorMsg">{{ errorMsg }}</span>
         </div>
+
         <div class="modal-footer">
           <button
             type="button"
@@ -89,18 +88,36 @@ export default {
   },
   data() {
     return {
-      fullInfo: true,
-      activityType: "",
       url: "",
       name: "",
+      errorMsg: "",
+      activityType: "",
     };
   },
   methods: {
-    addActivity() {
+    validateForm() {
       if (this.url == "" || this.activityType == "" || this.name == "") {
-        this.fullInfo = false;
+        this.errorMsg = "Please fill the required fields";
+        return false;
+      }
+
+      if (this.activityType === "youtube" && !this.validYouTubeUrl(this.url)) {
+        this.errorMsg = 'Please enter a valid YouTube link'
+        return false;
+      }
+      
+      if (this.activityType === "pdf" && !this.validPdfUrl(this.url)) {
+        this.errorMsg = 'Please enter a valid Pdf link'
+        return false;
+      }
+
+      return true;
+    },
+    addActivity() {
+      if (!this.validateForm()) {
         return;
       }
+
       axios
         .post(
           `${base}/activities/${this.courseID}`,
@@ -124,11 +141,22 @@ export default {
           console.log(error);
         });
     },
+    validPdfUrl(url) {
+      return url.endsWith('.pdf');
+    },
+    validYouTubeUrl (url) {
+      if (url != undefined || url != '') {
+        var regExp =
+          /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        return !!(match && match[2].length == 11);
+      }
+    },
     clearData() {
       this.url = "";
       this.name = "";
       this.activityType = "";
-      this.fullInfo = true;
+      this.errorMsg = "";
     },
   },
 };

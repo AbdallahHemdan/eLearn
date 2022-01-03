@@ -21,18 +21,22 @@ export default {
     pdfUrl: {
       type: String,
       required: true,
+      default: ''
     },
     title: {
       type: String,
       required: false,
+      default: ''
     },
     date: {
       type: String,
       required: false,
+      default: ''
     },
     instructorName: {
       type: String,
       required: false,
+      default: ''
     },
   },
   components: {

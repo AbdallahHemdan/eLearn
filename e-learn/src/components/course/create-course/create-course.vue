@@ -36,16 +36,17 @@
           </div>
           <div class="form-floating mb-3">
             <input
-              @input="fullInfo = 1"
               type="text"
               class="form-control"
               id="description"
-              v-model="description"
+              
+              @change="handleAddingItem"
             />
             <label for="description" class="input-label">Description</label>
           </div>
           <span class="error" v-if="!fullInfo">Please enter full info</span>
         </div>
+        
         <div class="modal-footer">
           <button
             type="button"

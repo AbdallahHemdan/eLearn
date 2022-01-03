@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col" v-if="userInfo.type != 'learner'">
+        <div class="col mb-4 create-activity__wrapper" v-if="userInfo.type != 'learner'">
             <button
                 type="button"
                 class="btn add-activity-btn"
@@ -65,6 +65,17 @@ export default {
         this.getActivities();
     },
     methods: {
+        formatLink(url) {
+            let indexOfToken = url.indexOf('=');
+            let indexOfDelimiter_1 = url.indexOf('?', indexOfToken);
+            indexOfDelimiter_1 = indexOfDelimiter_1  === -1 ? url.length : indexOfDelimiter_1;
+            
+            let indexOfDelimiter_2 = url.indexOf('&', indexOfToken);
+            indexOfDelimiter_2 = indexOfDelimiter_2  === -1 ? url.length : indexOfDelimiter_2;
+            let indexOfSeparator = Math.min(indexOfDelimiter_1, indexOfDelimiter_2)   
+
+            return url.substring(indexOfToken + 1, indexOfSeparator)
+        },
         getActivities() {
             axios
                 .get(`${base}/activities/${this.courseID}`, {
@@ -74,13 +85,12 @@ export default {
                 })
                 .then((response) => {
                     this.activities = response.data;
-                    this.activities.forEach((activity) => {
-                        activity.link =
-                            type == "pdf"
-                                ? activity.link
-                                : `https://www.youtube.com/embed/${activity.link.substr(
-                                      activity.link.indexOf("=") + 1
-                                  )}`;
+                    this.activities.forEach((activity, index) => {
+                        if (activity.type == "youtube" && activity.link.indexOf("embed") == -1) {
+                            activity.link = `https://www.youtube.com/embed/${this.formatLink(activity.link)}`
+                        }
+
+                        this.activities[index] = activity
                     });
                 })
                 .catch((error) => {
@@ -91,4 +101,20 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.add-activity-btn {
+    background-color: $main-color;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $sub-color;
+        cursor: pointer;
+    }
+}
+
+.create-activity__wrapper {
+    display: flex;
+    justify-content: end;
+}
+</style>
