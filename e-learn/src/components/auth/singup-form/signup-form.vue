@@ -148,7 +148,19 @@ export default {
     },
   },
   methods: {
+    validateEmail(email) {
+      return !!String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    },
     signup() {
+      if (!this.validateEmail(this.email)) {
+        this.errorMessage = "Invalid Email, please enter a valid one";
+        return;
+      }
+
       axios
         .post(`${base}/signup`, this.payload, {
           headers: {

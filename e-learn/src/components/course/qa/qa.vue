@@ -3,7 +3,7 @@
     <div class="new-question">
       <div class="question">
         <img
-          src="@/assets/svgs/avatar.svg"
+          :src="`https://avatars.dicebear.com/api/initials/${userInfo.firstName}.svg?background=%234f46e5`"
           alt="user image"
           class="user__image"
         />
@@ -36,7 +36,7 @@
 <script>
 import axios from "axios";
 import { base } from "@/utilities/api";
-import { getAccessToken } from "@/utilities/auth";
+import { getAccessToken, getUserData } from "@/utilities/auth";
 
 export default {
   name: "QA",
@@ -44,19 +44,24 @@ export default {
     courseID: {
       type: String,
       required: true,
+      default: ""
     },
   },
   data() {
     return {
       question: "",
+      userInfo: {},
     };
+  },
+  mounted() {
+    this.userInfo = getUserData()
   },
   computed: {
     payload() {
       return {
         question: this.question,
         date: new Date().toISOString().split("T")[0],
-        courserId: "1",
+        courserId: this.courseID,
       };
     },
   },
@@ -69,7 +74,7 @@ export default {
     },
     post() {
       axios
-        .post(`${base}/courses/${"1"}/questions`, this.payload, {
+        .post(`${base}/courses/${this.courseID}/questions`, this.payload, {
           headers: {
             Authorization: `Bearer ${getAccessToken()}`,
           },
@@ -102,6 +107,7 @@ export default {
   width: 50px;
   height: 50px;
   margin-right: 16px;
+  border-radius: 100%;
 }
 
 .post {

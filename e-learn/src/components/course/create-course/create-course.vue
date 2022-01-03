@@ -34,16 +34,17 @@
             />
             <label for="courseName" class="input-label">Course Name</label>
           </div>
-          <div class="form-floating mb-3">
+          <div class="form-floating mb-3" v-for="(item, index) in syllabus" :key="index">
             <input
               type="text"
               class="form-control"
               id="description"
-              
-              @change="handleAddingItem"
+              v-model="item.name"
+              :name="`Item+${index}`"
             />
-            <label for="description" class="input-label">Description</label>
+            <label for="description" class="input-label">Syllabus Item</label>
           </div>
+          <button type="button" class="btn create-btn add-syllabus-item" @click="addNewSyllabus">Add Syllabus item</button>
           <span class="error" v-if="!fullInfo">Please enter full info</span>
         </div>
         
@@ -82,13 +83,23 @@ export default {
   data() {
     return {
       courseName: "",
-      description: "",
+      syllabus: [{name: ""}],
       fullInfo: true,
     };
   },
+  computed: {
+    hasEmptySyllabus() {
+      let emptyItem = false
+      this.syllabus.forEach(item => {
+        if (!item.name) emptyItem = true
+      })
+
+      return emptyItem;
+    }
+  },
   methods: {
     createCourse() {
-      if (this.courseName == "" || this.description == "") {
+      if (this.courseName == "" || this.hasEmptySyllabus) {
         this.fullInfo = false;
         return;
       }
@@ -97,7 +108,7 @@ export default {
           `${base}/courses`,
           {
             name: this.courseName,
-            syllabus: this.description,
+            syllabus: this.syllabus.map((item) => item.name),
           },
           {
             headers: {
@@ -114,9 +125,12 @@ export default {
           console.log(error);
         });
     },
+    addNewSyllabus() {
+      this.syllabus.push({name:""});
+    },
     clearData() {
       this.courseName = "";
-      this.description = "";
+      this.syllabus = [{name:""}];
       this.fullInfo = true;
     },
   },
@@ -124,6 +138,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.add-syllabus-item {
+  width: 100%
+}
 .create-btn {
   background-color: $main-color;
   color: $white;

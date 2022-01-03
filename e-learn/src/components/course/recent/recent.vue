@@ -4,12 +4,8 @@
 
     <div class="course__title">{{ title }}</div>
 
-    <div class="course__description">
-      {{ description }}
-    </div>
-
     <div class="instructor">
-      <img :src="require(`@/assets/${instructorImage}`)" class="instructor__image" />
+      <img :src="`https://avatars.dicebear.com/api/initials/${instructorName}.svg?background=%234f46e5`" class="instructor__image" />
 
       <div class="instructor__info">
         <div class="instructor__name">{{ instructorName }}</div>
@@ -30,9 +26,6 @@ export default {
       type: String,
     },
     title: {
-      type: String,
-    },
-    description: {
       type: String,
     },
     instructorName: {
@@ -62,18 +55,14 @@ export default {
 .course__title {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.course__description {
-  color: $darker-gray;
-  margin-bottom: 32px;
+  margin-bottom: 10px;
 }
 
 .instructor__image {
   width: 50px;
   height: 50px;
   margin-right: 16px;
+  border-radius: 100%;
 }
 
 .instructor {

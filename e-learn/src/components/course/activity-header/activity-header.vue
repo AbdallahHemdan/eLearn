@@ -62,6 +62,7 @@ export default {
     width: 50px;
     height: 50px;
     margin-right: 16px;
+    border-radius: 100%;
   }
 
   &__name {

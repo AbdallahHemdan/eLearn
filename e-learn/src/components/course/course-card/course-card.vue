@@ -10,16 +10,18 @@
           <div class="course__title">{{ course.name }}</div>
           <div class="course__date">Created at {{ course.date }}</div>
         </div>
-
-        <div class="course__description">
-          {{ course.syllabus }}
-        </div>
-      </div>
-
-      <div class="d-flex justify-content-between align-items-center">
         <div class="course__instructor instructor__name">
           {{ course.instructorName }}
         </div>
+        <div class="card-header">
+          Syllabus
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" v-for="(item, index) in course.syllabus" :key="index">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
 
         <div class="course__action">
           <button
@@ -33,7 +35,7 @@
           <router-link :to="`/course/${course._id}`">
             <button
               class="btn btn-outline-secondary course__btn"
-              v-if="userInfo.type != 'instructor' && course.isEnrolled"
+              v-if="course.isEnrolled || course.instructorName == userInfo.username"
             >
               View
             </button>
@@ -156,8 +158,13 @@ export default {
   }
 }
 
+.card-header {
+  text-align: center;
+}
+
 .instructor__name {
   font-weight: 600;
   color: $main-color;
+  margin-bottom: 12px
 }
 </style>

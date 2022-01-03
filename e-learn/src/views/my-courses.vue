@@ -32,7 +32,7 @@ export default {
   methods: {
     getMyCourses() {
       axios
-        .get(`${base}/my-courses`, {
+        .get(`${base}/courses/my-courses`, {
           headers: {
             Authorization: `Bearer ${getAccessToken()}`,
           },

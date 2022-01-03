@@ -40,7 +40,7 @@ const routes = [
     },
   },
   {
-    path: '/reset',
+    path: '/reset/:id',
     name: 'Reset',
     component: () => import(/* webpackChunkName: "reset" */ '@/views/reset.vue'),
     meta: {

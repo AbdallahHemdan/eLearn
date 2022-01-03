@@ -10,9 +10,12 @@
                         {{ courseInfo.name }}
                     </h1>
                 </div>
-                <p class="lead">
-                    {{ courseInfo.syllabus }}
-                </p>
+                <div class="card-header">
+                    Syllabus
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" v-for="(item, index) in courseInfo.syllabus" :key="index">{{ item }}</li>
+                </ul>
             </div>
         </div>
 
@@ -23,7 +26,7 @@
                 </div>
                 <div class="col instructor">
                     <img
-                        src="@/assets/svgs/avatar.svg"
+                        :src="`https://avatars.dicebear.com/api/initials/${courseInfo.instructorName}.svg?background=%234f46e5`"
                         alt="the instructor image"
                         class="instructor__image"
                     />
@@ -183,6 +186,7 @@ export default {
     width: 100px;
     height: 100px;
     margin-right: 20px;
+    border-radius: 100%;
 }
 
 .nav-item {

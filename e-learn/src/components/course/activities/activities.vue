@@ -40,10 +40,12 @@ export default {
         courseID: {
             type: String,
             required: true,
+            default: ""
         },
         instructorName: {
             type: String,
             required: true,
+            default: ""
         },
     },
     data() {

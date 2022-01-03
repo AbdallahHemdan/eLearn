@@ -68,6 +68,7 @@ export default {
     payload() {
       return {
         password: this.password,
+        token: this.$route.params.id
       };
     },
   },
@@ -77,9 +78,13 @@ export default {
         this.validationMsg = 'Passwords do not match';
         return;
       }
-
+      const token = this.$route.params
       axios
-        .post(`${base}/reset`, this.payload)
+        .post(`${base}/reset`, this.payload, {
+            headers: {
+              Authorization: `Bearer ${token.id}`,
+            },
+          })
         .then(response => {
           console.log(response);
 
@@ -87,6 +92,7 @@ export default {
           // "Your password has been reset successfully"
           this.success = true;
           this.validationMsg = 'Your password has been reset successfully';
+          window.location = '/login'
         })
         .catch(error => {
           // if error, set the error message to the received error message

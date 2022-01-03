@@ -54,7 +54,6 @@
 
           <div class="comment__info">
             <div class="comment__usr-name">{{ post.username }}</div>
-            <div class="comment__date">Posted on {{ post.date }}</div>
           </div>
         </div>
 
@@ -69,7 +68,7 @@
           <button
             type="button"
             class="btn btn-outline-secondary add-comment__btn"
-            @click.prevent="addComment"
+            @click.prevent="addComment(post._id)"
             :disabled="!newComment"
           >
             Comment
@@ -96,34 +95,7 @@ export default {
   data() {
     return {
       newComment: "",
-      posts: [
-        {
-          username: "Eduardo Benz",
-          date: "Dec 6, 2022",
-          content:
-            "Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
-          answers: [
-            {
-              username: "Hemdan",
-              date: "Dec 9, 2022",
-              content:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.",
-            },
-            {
-              username: "Hemdan",
-              date: "Dec 9, 2022",
-              content:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.",
-            },
-            {
-              username: "Hemdan",
-              date: "Dec 9, 2022",
-              content:
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora temporibus mollitia praesentium tenetur qui soluta.",
-            },
-          ],
-        },
-      ],
+      posts: [{}],
     };
   },
   computed: {
@@ -149,9 +121,9 @@ export default {
           console.log(error);
         });
     },
-    addComment() {
+    addComment(postId) {
       axios
-        .post(`${base}/courses/${"1"}/answers`, this.payload, {
+        .post(`${base}/courses/${postId}/answers`, this.payload, {
           headers: {
             Authorization: `Bearer ${getAccessToken()}`,
           },
