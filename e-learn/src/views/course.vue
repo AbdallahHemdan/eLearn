@@ -23,17 +23,6 @@
             </div>
         </div>
 
-        <div class="card-header">Syllabus</div>
-        <ul class="list-group list-group-flush">
-            <li
-                class="list-group-item"
-                v-for="(item, index) in courseInfo.syllabus"
-                :key="index"
-            >
-                {{ item }}
-            </li>
-        </ul>
-
         <div class="course__instructor">
             <div class="row">
                 <div class="col left-col">
