@@ -132,7 +132,7 @@ export default {
           }
         )
         .then((response) => {
-          console.log(response);
+          this.$emit("createCourse", response.data);
           this.clearData();
           document.getElementById("close").click();
         })
