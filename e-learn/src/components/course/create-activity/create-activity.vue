@@ -34,21 +34,11 @@
             <option value="youtube">Video</option>
           </select>
           <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              v-model="name"
-            />
+            <input type="text" class="form-control" id="name" v-model="name" />
             <label for="name" class="input-label">Name*</label>
           </div>
           <div class="form-floating mb-3">
-            <input
-              type="url"
-              class="form-control"
-              id="url"
-              v-model="url"
-            />
+            <input type="url" class="form-control" id="url" v-model="url" />
             <label for="url" class="input-label">Url*</label>
           </div>
           <span class="error" v-if="errorMsg">{{ errorMsg }}</span>
@@ -102,12 +92,12 @@ export default {
       }
 
       if (this.activityType === "youtube" && !this.validYouTubeUrl(this.url)) {
-        this.errorMsg = 'Please enter a valid YouTube link'
+        this.errorMsg = "Please enter a valid YouTube link";
         return false;
       }
-      
+
       if (this.activityType === "pdf" && !this.validPdfUrl(this.url)) {
-        this.errorMsg = 'Please enter a valid Pdf link'
+        this.errorMsg = "Please enter a valid Pdf link";
         return false;
       }
 
@@ -132,8 +122,8 @@ export default {
             },
           }
         )
-        .then((response) => {
-          console.log(response);
+        .then(({ data }) => {
+          this.$emit("addNewActivity", data);
           this.clearData();
           document.getElementById("close").click();
         })
@@ -142,10 +132,10 @@ export default {
         });
     },
     validPdfUrl(url) {
-      return url.endsWith('.pdf');
+      return url.endsWith(".pdf");
     },
-    validYouTubeUrl (url) {
-      if (url != undefined || url != '') {
+    validYouTubeUrl(url) {
+      if (url != undefined || url != "") {
         var regExp =
           /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
         var match = url.match(regExp);
