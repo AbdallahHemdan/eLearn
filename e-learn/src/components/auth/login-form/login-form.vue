@@ -30,19 +30,6 @@
 
     <!-- Remember me -->
     <div class="d-flex justify-content-between align-items-center">
-      <div class="form-check col-md">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          value=""
-          id="flexCheckDefault"
-          v-model="remember"
-        />
-        <label class="form-check-label" for="flexCheckDefault">
-          Remember me
-        </label>
-      </div>
-
       <div class="forgot-password col-md">
         <a href="/forgot" class="forgot-text"> Forget your password ? </a>
       </div>
