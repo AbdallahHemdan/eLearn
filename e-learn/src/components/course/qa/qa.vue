@@ -29,7 +29,10 @@
         </div>
       </div>
     </div>
-    <posts :courseID="courseID" />
+    <posts 
+    :courseID="courseID"
+    ref="postsComponent"
+    />
   </div>
 </template>
 
@@ -80,14 +83,18 @@ export default {
           },
         })
         .then(({ data }) => {
-          console.log(data);
           this.newComment = "";
+          this.$refs.postsComponent.addNewCourse({
+            username: this.userInfo.username,
+            body: this.question,
+            date: new Date().toISOString().split("T")[0],
+          });
+          this.question = "";
         })
         .catch((err) => {
           console.log(err);
         });
 
-      this.question = "";
     },
   },
 };

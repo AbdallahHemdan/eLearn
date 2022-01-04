@@ -68,7 +68,7 @@
           <button
             type="button"
             class="btn btn-outline-secondary add-comment__btn"
-            @click.prevent="addComment(post._id)"
+            @click.prevent="addComment(post._id, index)"
             :disabled="!newComment"
           >
             Comment
@@ -82,7 +82,7 @@
 <script>
 import axios from "axios";
 import { base } from "@/utilities/api";
-import { getAccessToken } from "@/utilities/auth";
+import { getAccessToken, getUserData } from "@/utilities/auth";
 
 export default {
   name: "Posts",
@@ -96,6 +96,7 @@ export default {
     return {
       newComment: "",
       posts: [{}],
+      userData: {}
     };
   },
   computed: {
@@ -107,6 +108,10 @@ export default {
     },
   },
   methods: {
+    addNewCourse(newPost) {
+      console.log('newPost: ', newPost)
+      this.posts.push(newPost);
+    },
     getPosts() {
       axios
         .get(`${base}/courses/${this.courseID}/questions`, {
@@ -121,7 +126,7 @@ export default {
           console.log(error);
         });
     },
-    addComment(postId) {
+    addComment(postId, index) {
       axios
         .post(`${base}/courses/${postId}/answers`, this.payload, {
           headers: {
@@ -129,7 +134,12 @@ export default {
           },
         })
         .then(({ data }) => {
-          console.log("data", data);
+          this.posts[index].answers.push({
+            username: this.userData.username,
+            date: new Date().toISOString().split("T")[0],
+            body: this.newComment,
+          })
+
           this.newComment = "";
         })
         .catch((err) => {
@@ -139,6 +149,9 @@ export default {
   },
   created() {
     this.getPosts();
+  },
+  mounted() {
+    this.userData = getUserData();
   },
 };
 </script>

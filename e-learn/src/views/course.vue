@@ -14,7 +14,7 @@
                     Syllabus
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item" v-for="(item, index) in courseInfo.syllabus" :key="index">{{ item }}</li>
+                    <li class="list-group-item" v-for="(item, index) in courseInfo.syllabus" :key="index">{{ index + 1 }}. {{ item }}</li>
                 </ul>
             </div>
         </div>
@@ -175,6 +175,11 @@ export default {
 .instructor__title {
     font-weight: 600;
     color: $main-color;
+}
+
+.left-col {
+    display: flex;
+    align-items: center;
 }
 
 .left-col,
