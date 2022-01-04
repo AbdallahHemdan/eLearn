@@ -34,7 +34,11 @@
             />
             <label for="courseName" class="input-label">Course Name</label>
           </div>
-          <div class="form-floating mb-3" v-for="(item, index) in syllabus" :key="index">
+          <div
+            class="form-floating mb-3"
+            v-for="(item, index) in syllabus"
+            :key="index"
+          >
             <input
               type="text"
               class="form-control"
@@ -44,10 +48,19 @@
             />
             <label for="description" class="input-label">Syllabus Item</label>
           </div>
-          <button type="button" class="btn create-btn add-syllabus-item" @click="addNewSyllabus">Add Syllabus item</button>
+          <button
+            type="button"
+            class="btn create-btn add-syllabus-item"
+            @click="addNewSyllabus"
+          >
+            Add Syllabus item
+          </button>
           <span class="error" v-if="!fullInfo">Please enter full info</span>
+          <span class="error" v-if="!success"
+            >Please try different course name</span
+          >
         </div>
-        
+
         <div class="modal-footer">
           <button
             type="button"
@@ -83,22 +96,24 @@ export default {
   data() {
     return {
       courseName: "",
-      syllabus: [{name: ""}],
+      syllabus: [{ name: "" }],
       fullInfo: true,
+      success: true,
     };
   },
   computed: {
     hasEmptySyllabus() {
-      let emptyItem = false
-      this.syllabus.forEach(item => {
-        if (!item.name) emptyItem = true
-      })
+      let emptyItem = false;
+      this.syllabus.forEach((item) => {
+        if (!item.name) emptyItem = true;
+      });
 
       return emptyItem;
-    }
+    },
   },
   methods: {
     createCourse() {
+      this.success = true;
       if (this.courseName == "" || this.hasEmptySyllabus) {
         this.fullInfo = false;
         return;
@@ -123,15 +138,17 @@ export default {
         })
         .catch((error) => {
           console.log(error);
+          this.success = false;
         });
     },
     addNewSyllabus() {
-      this.syllabus.push({name:""});
+      this.syllabus.push({ name: "" });
     },
     clearData() {
       this.courseName = "";
-      this.syllabus = [{name:""}];
+      this.syllabus = [{ name: "" }];
       this.fullInfo = true;
+      this.success = true;
     },
   },
 };
@@ -139,7 +156,7 @@ export default {
 
 <style lang="scss" scoped>
 .add-syllabus-item {
-  width: 100%
+  width: 100%;
 }
 .create-btn {
   background-color: $main-color;
