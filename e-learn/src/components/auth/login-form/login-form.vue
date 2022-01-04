@@ -2,7 +2,13 @@
   <form class="login">
     <!-- Email Field -->
     <div class="form-floating mb-3">
-      <input type="email" class="form-control" id="email" placeholder="Email" v-model="email" />
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+        v-model="email"
+      />
       <label for="email" class="auth__input-label">Email</label>
     </div>
 
@@ -32,7 +38,9 @@
           id="flexCheckDefault"
           v-model="remember"
         />
-        <label class="form-check-label" for="flexCheckDefault"> Remember me </label>
+        <label class="form-check-label" for="flexCheckDefault">
+          Remember me
+        </label>
       </div>
 
       <div class="forgot-password col-md">
@@ -53,18 +61,18 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
-import { setAccessToken, setUserData } from '@/utilities/auth';
+import axios from "axios";
+import { base } from "@/utilities/api";
+import { setAccessToken, setUserData } from "@/utilities/auth";
 
 export default {
-  name: 'LoginForm',
+  name: "LoginForm",
   data() {
     return {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       remember: false,
-      errorMessage: '',
+      errorMessage: "",
     };
   },
   computed: {
@@ -83,12 +91,11 @@ export default {
           setAccessToken(data.token);
           setUserData(data.userData);
 
-          window.location = '/';
+          window.location = "/";
         })
-        .catch(error => {
+        .catch((error) => {
           // if error, set the error message to the received error message
-          console.log(error);
-          this.errorMessage = error;
+          this.errorMessage = error.response.data.message;
         });
     },
   },

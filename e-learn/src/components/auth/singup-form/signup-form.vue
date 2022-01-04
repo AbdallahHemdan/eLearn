@@ -177,7 +177,7 @@ export default {
         .catch(error => {
           // if error, set the error message to the received error message
           console.log(error);
-          this.errorMessage = error;
+          this.errorMessage = error.response.data.message;
         });
     },
   },

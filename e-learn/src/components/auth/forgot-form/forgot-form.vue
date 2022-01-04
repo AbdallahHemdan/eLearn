@@ -2,7 +2,13 @@
   <form class="forgot">
     <!-- Email Field -->
     <div class="form-floating mb-3">
-      <input type="email" class="form-control" id="email" placeholder="Email" v-model="email" />
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Email"
+        v-model="email"
+      />
       <label for="email" class="auth__input-label">Email</label>
     </div>
 
@@ -32,16 +38,16 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
+import axios from "axios";
+import { base } from "@/utilities/api";
 
 export default {
-  name: 'ForgotForm',
+  name: "ForgotForm",
   data() {
     return {
-      email: '',
+      email: "",
       success: false,
-      validationMsg: '',
+      validationMsg: "",
     };
   },
   computed: {
@@ -55,15 +61,15 @@ export default {
     submit() {
       axios
         .post(`${base}/forgot`, this.payload)
-        .then(response => {
+        .then((response) => {
           console.log(response);
 
           // if remember is set to true, show success message
           // "Please check your email to reset your password"
           this.success = true;
-          this.validationMsg = 'Please check your email to reset your password';
+          this.validationMsg = "Please check your email to reset your password";
         })
-        .catch(error => {
+        .catch((error) => {
           // if error, set the error message to the received error message
           console.log(error.message);
           this.validationMsg = "Email Not Found";

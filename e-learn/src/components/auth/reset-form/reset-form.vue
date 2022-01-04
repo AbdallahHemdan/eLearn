@@ -21,7 +21,9 @@
         placeholder="Confirm Password"
         v-model="confirmPassword"
       />
-      <label for="confirm-password" class="auth__input-label">Confirm Password</label>
+      <label for="confirm-password" class="auth__input-label"
+        >Confirm Password</label
+      >
     </div>
 
     <!-- Validation Message -->
@@ -50,54 +52,54 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { base } from '@/utilities/api';
+import axios from "axios";
+import { base } from "@/utilities/api";
 
 export default {
-  name: 'ForgotForm',
+  name: "ForgotForm",
   data() {
     return {
-      password: '',
-      confirmPassword: '',
+      password: "",
+      confirmPassword: "",
 
       success: false,
-      validationMsg: '',
+      validationMsg: "",
     };
   },
   computed: {
     payload() {
       return {
         password: this.password,
-        token: this.$route.params.id
+        token: this.$route.params.id,
       };
     },
   },
   methods: {
     submit() {
       if (this.password !== this.confirmPassword) {
-        this.validationMsg = 'Passwords do not match';
+        this.validationMsg = "Passwords do not match";
         return;
       }
-      const token = this.$route.params
+      const token = this.$route.params;
       axios
         .post(`${base}/reset`, this.payload, {
-            headers: {
-              Authorization: `Bearer ${token.id}`,
-            },
-          })
-        .then(response => {
+          headers: {
+            Authorization: `Bearer ${token.id}`,
+          },
+        })
+        .then((response) => {
           console.log(response);
 
           // if remember is set to true, show success message
           // "Your password has been reset successfully"
           this.success = true;
-          this.validationMsg = 'Your password has been reset successfully';
-          window.location = '/login'
+          this.validationMsg = "Your password has been reset successfully";
+          window.location = "/login";
         })
-        .catch(error => {
+        .catch((error) => {
           // if error, set the error message to the received error message
           console.log(error);
-          this.validationMsg = error;
+          this.validationMsg = error.response.data.message;
         });
     },
   },
