@@ -53,8 +53,7 @@
         <div class="recent">
             <div class="recent__title">Recent Courses</div>
             <div class="recent__sub-title">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias
-                saepe explicabo ipsa blanditiis doloribus dolor est minus.
+                Check out our recent courses
             </div>
 
             <div class="row mt-lg-5">

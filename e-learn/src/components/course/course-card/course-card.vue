@@ -1,8 +1,8 @@
 <template>
   <div class="course">
-    <div class="course__img">
+    <!-- <div class="course__img">
       <img src="https://picsum.photos/200/300" alt="course image" />
-    </div>
+    </div> -->
 
     <div class="course__data">
       <div class="course__header">
@@ -13,21 +13,18 @@
         <div class="course__instructor instructor__name">
           {{ course.instructorName }}
         </div>
-        <div class="card-header">
-          Syllabus
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item" v-for="(item, index) in course.syllabus" :key="index">{{ item }}</li>
-        </ul>
       </div>
 
       <div class="d-flex justify-content-between align-items-center">
-
         <div class="course__action">
           <button
             class="btn btn-outline-secondary course__btn"
             @click.prevent="enroll()"
-            v-if="userInfo.type != 'instructor' && !course.isEnrolled"
+            v-if="
+              userInfo.type != 'instructor' &&
+              !course.isEnrolled &&
+              course.instructorName != userInfo.username
+            "
           >
             Enroll
           </button>
@@ -35,7 +32,10 @@
           <router-link :to="`/course/${course._id}`">
             <button
               class="btn btn-outline-secondary course__btn"
-              v-if="course.isEnrolled || course.instructorName == userInfo.username"
+              v-if="
+                (userInfo.type != 'instructor' && course.isEnrolled) ||
+                course.instructorName == userInfo.username
+              "
             >
               View
             </button>
@@ -165,6 +165,6 @@ export default {
 .instructor__name {
   font-weight: 600;
   color: $main-color;
-  margin-bottom: 12px
+  margin-bottom: 12px;
 }
 </style>

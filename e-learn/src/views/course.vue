@@ -10,14 +10,29 @@
                         {{ courseInfo.name }}
                     </h1>
                 </div>
-                <div class="card-header">
-                    Syllabus
-                </div>
+                <div class="card-header">Syllabus</div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item" v-for="(item, index) in courseInfo.syllabus" :key="index">{{ index + 1 }}. {{ item }}</li>
+                    <li
+                        class="list-group-item"
+                        v-for="(item, index) in courseInfo.syllabus"
+                        :key="index"
+                    >
+                        {{ index + 1 }}. {{ item }}
+                    </li>
                 </ul>
             </div>
         </div>
+
+        <div class="card-header">Syllabus</div>
+        <ul class="list-group list-group-flush">
+            <li
+                class="list-group-item"
+                v-for="(item, index) in courseInfo.syllabus"
+                :key="index"
+            >
+                {{ item }}
+            </li>
+        </ul>
 
         <div class="course__instructor">
             <div class="row">
@@ -81,13 +96,9 @@ export default {
     name: "Course",
     data() {
         return {
-            name: "online education",
-            description: `Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
-          Elit sunt amet fugiat veniam occaecat fugiat aliqua ad non deserunt lorem cupidatat
-          commodo.`,
             isQA: false,
-            instructorName: "John Doe",
-            instructorTitle: "Englist Instructor at AUC",
+            instructorName: "",
+            instructorTitle: "",
             userInfo: {},
             userImage: "",
             courseID: null,

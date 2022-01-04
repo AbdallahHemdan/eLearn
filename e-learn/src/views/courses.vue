@@ -13,7 +13,11 @@
         >
           Create Course
         </button>
-        <create-course id="myModal" :instructorName="userInfo.username" />
+        <create-course
+          id="myModal"
+          :instructorName="userInfo.username"
+          @createCourse="createCourse"
+        />
       </div>
     </div>
     <course-card
@@ -63,6 +67,11 @@ export default {
     },
     setUserInfo() {
       this.userInfo = getUserData();
+    },
+    createCourse(course) {
+      course.instructorName = this.userInfo.username;
+      course.isEnrolled = false;
+      this.courses.push(course);
     },
   },
   created: function () {
