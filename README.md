@@ -29,8 +29,6 @@
 - [Getting Started](#getting-started)
   - [Installation](#installation)
   - [Running](#running)
-- [Responsive Screenshots](#responsive-screenshots)
-- [Desktop Screenshots](#desktop-screenshots)
 - [File Structure](#file-structure)
 - [Contributors](#contributors)
 - [License](#license)
@@ -130,7 +128,7 @@ $ yarn serve
 
 <td align="center"><a href="https://github.com/EmanOthman21"  target="_black"><img src="https://avatars.githubusercontent.com/u/47359992?v=4" width="150px;" alt="Abdelrahman Fadl"/><br /><sub><b>Eman Othman</b></sub></a><a href="https://github.com/AbdallahHemdan/Instahelp/commits/master?author=EmanOthman21" title="Code">💻</a><br /></td>
 
-<td align="center"><a href="https://github.com/AdelRizq" target="_black"><img src="https://avatars.githubusercontent.com/u/40351413?v=4" width="150px;" alt="Adel Rizq"/><br /><sub><b>Adel Mohamed Abdelhamed</b></sub></a><a href="https://github.com/AbdallahHemdan/Instahelp/commits/master?author=AdelRizq" title="Code">💻</a><br /></td>
+<td align="center"><a href="https://github.com/AdelRizq" target="_black"><img src="https://avatars.githubusercontent.com/u/40351413?v=4" width="150px;" alt="Adel Rizq"/><br /><sub><b>Adel Rizq</b></sub></a><a href="https://github.com/AbdallahHemdan/Instahelp/commits/master?author=AdelRizq" title="Code">💻</a><br /></td>
 
 <td align="center"><a href="https://github.com/Mahboub99" target="_black"><img src="https://avatars3.githubusercontent.com/u/43186742?s=460&v=4" width="150px;" alt=""/><br /><sub><b>Ahmed Mahboub</b></sub></a><a href="https://github.com/AbdallahHemdan/Instahelp/commits/master?author=Mahboub99" title="Code">💻</a><br /></td>
   </tr>
